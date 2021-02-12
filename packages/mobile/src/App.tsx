@@ -26,7 +26,7 @@ import {
 
 import {getWelcomeString} from '@projektor/common';
 
-const App: () => React$Node = () => {
+const App: () => React.ReactNode = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -35,7 +35,8 @@ const App: () => React$Node = () => {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
           <Header />
-          {global.HermesInternal == null ? null : (
+          {(global as typeof global & {HermesInternal: boolean})
+            .HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
             </View>
