@@ -1,0 +1,27 @@
+{
+  "name": "projektor",
+  "version": "1.0.0",
+  "description": "To share things",
+  "main": "index.js",
+  "repository": "https://github.com/ludwigschubi/projektor",
+  "author": "Ludwig Schubert",
+  "license": "GPL-3.0",
+  "scripts": {
+    "postinstall": "concurrently \"cd packages/common && yarn build\"",
+    "dev:web": "concurrently \"cd packages/web && yarn start\"",
+    "dev:mobile": "concurrently \"cd packages/mobile && yarn ios\""
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "react-native",
+      "react-native/**"
+    ]
+  },
+  "private": true,
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  }
+}
