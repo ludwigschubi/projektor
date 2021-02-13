@@ -1,14 +1,14 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { getWelcomeString } from "@projektor/common";
+import * as commons from "@projektor/common";
 
 function App() {
+  console.debug(commons);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>{getWelcomeString("World")}</p>
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>

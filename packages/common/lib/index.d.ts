@@ -1,3 +1,3 @@
-/// <reference types="react" />
-export declare const getWelcomeString: (name: string) => JSX.Element;
+export * from "./pages";
+export * from "./components";
 //# sourceMappingURL=index.d.ts.map
