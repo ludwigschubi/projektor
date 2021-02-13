@@ -9,4 +9,9 @@ export const PageStyleSheet = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  main: {
+    flex: 1,
+    width: "100%",
+    padding: 16,
+  },
 });

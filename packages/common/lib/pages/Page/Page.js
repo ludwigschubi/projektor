@@ -12,7 +12,7 @@ const Page_styles_1 = require("./Page.styles");
 const Page = ({ children }) => {
     return (react_1.default.createElement(react_native_1.SafeAreaView, { style: Page_styles_1.PageStyleSheet.container },
         react_1.default.createElement(TopBar_1.TopBar, null),
-        children,
+        react_1.default.createElement(react_native_1.View, { style: Page_styles_1.PageStyleSheet.main }, children),
         react_1.default.createElement(BottomBar_1.BottomBar, null)));
 };
 exports.Page = Page;

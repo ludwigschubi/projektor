@@ -7,5 +7,10 @@ export declare const PageStyleSheet: {
         justifyContent: "space-between";
         alignItems: "center";
     };
+    main: {
+        flex: number;
+        width: string;
+        padding: number;
+    };
 };
 //# sourceMappingURL=Page.styles.d.ts.map
