@@ -10,7 +10,8 @@ export declare const PageStyleSheet: {
     main: {
         flex: number;
         width: string;
-        padding: number;
+        paddingLeft: number;
+        paddingRight: number;
     };
 };
 //# sourceMappingURL=Page.styles.d.ts.map

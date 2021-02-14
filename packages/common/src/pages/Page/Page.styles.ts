@@ -12,6 +12,7 @@ export const PageStyleSheet = StyleSheet.create({
   main: {
     flex: 1,
     width: "100%",
-    padding: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
   },
 });
