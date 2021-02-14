@@ -6,6 +6,7 @@ import {
   PlusPage,
   NotificationsPage,
   ProfilePage,
+  LoginPage,
 } from '@projektor/common';
 import React from 'react';
 import { SafeAreaView } from 'react-native';
@@ -17,7 +18,15 @@ const Stack = createStackNavigator();
 const App: () => React.ReactNode = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen
+          name="Login"
+          component={LoginPage}
+          options={{
+            animationEnabled: false,
+            headerShown: false,
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={HomePage}

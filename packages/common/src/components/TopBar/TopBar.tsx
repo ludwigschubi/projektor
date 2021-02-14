@@ -1,15 +1,15 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, ViewStyle, StyleProp } from "react-native";
 import { TopBarStyleSheet as styles } from "./TopBar.styles";
-const projektorLogo = "../../../src/images/logos/Projektor Font Logo.jpg";
+const projektorLogo = "../../../src/assets/images/Projektor Font Logo.jpg";
 
 interface TopBarProps {
-  style?: CssProps;
+  style?: StyleProp<ViewStyle>;
 }
 
 export const TopBar: React.FC<TopBarProps> = ({ style }) => {
   return (
-    <View style={{ ...styles.container, ...style }}>
+    <View style={{ ...styles.container, ...(style as object) }}>
       <Image source={require(projektorLogo)} style={styles.logo} />
     </View>
   );

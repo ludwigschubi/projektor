@@ -15,3 +15,4 @@ __exportStar(require("./SearchPage"), exports);
 __exportStar(require("./PlusPage"), exports);
 __exportStar(require("./NotificationsPage"), exports);
 __exportStar(require("./ProfilePage"), exports);
+__exportStar(require("./LoginPage"), exports);

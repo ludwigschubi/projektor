@@ -12,4 +12,5 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./TopBar"), exports);
 __exportStar(require("./BottomBar"), exports);
+__exportStar(require("./Button"), exports);
 __exportStar(require("./Icon"), exports);

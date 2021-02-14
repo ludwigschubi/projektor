@@ -1,7 +1,7 @@
-/// <reference types="hammerjs" />
 import React from "react";
+import { ViewStyle, StyleProp } from "react-native";
 interface TopBarProps {
-    style?: CssProps;
+    style?: StyleProp<ViewStyle>;
 }
 export declare const TopBar: React.FC<TopBarProps>;
 export {};

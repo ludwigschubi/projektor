@@ -3,14 +3,14 @@ import { View } from "react-native";
 import { Icon } from "../Icon";
 import { BottomBarStyleSheet as styles } from "./BottomBar.styles";
 
-const plusIcon = require("../../../src/images/icons/plus-circle.png");
-const plusIconActive = require("../../../src/images/icons/plus-circle-1.png");
-const bellIcon = require("../../../src/images/icons/bell.png");
-const bellIconActive = require("../../../src/images/icons/bell-1.png");
-const homeIcon = require("../../../src/images/icons/home.png");
-const homeIconActive = require("../../../src/images/icons/home-1.png");
-const searchIcon = require("../../../src/images/icons/search.png");
-const searchIconActive = require("../../../src/images/icons/search-1.png");
+const plusIcon = require("../../../src/assets/icons/plus-circle.png");
+const plusIconActive = require("../../../src/assets/icons/plus-circle-1.png");
+const bellIcon = require("../../../src/assets/icons/bell.png");
+const bellIconActive = require("../../../src/assets/icons/bell-1.png");
+const homeIcon = require("../../../src/assets/icons/home.png");
+const homeIconActive = require("../../../src/assets/icons/home-1.png");
+const searchIcon = require("../../../src/assets/icons/search.png");
+const searchIconActive = require("../../../src/assets/icons/search-1.png");
 
 export interface BottomBarProps {
   navigate?: any;
