@@ -14,3 +14,4 @@ __exportStar(require("./HomePage"), exports);
 __exportStar(require("./SearchPage"), exports);
 __exportStar(require("./PlusPage"), exports);
 __exportStar(require("./NotificationsPage"), exports);
+__exportStar(require("./ProfilePage"), exports);
