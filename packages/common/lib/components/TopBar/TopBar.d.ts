@@ -1,3 +1,8 @@
+/// <reference types="hammerjs" />
 import React from "react";
-export declare const TopBar: React.FC;
+interface TopBarProps {
+    style?: CssProps;
+}
+export declare const TopBar: React.FC<TopBarProps>;
+export {};
 //# sourceMappingURL=TopBar.d.ts.map

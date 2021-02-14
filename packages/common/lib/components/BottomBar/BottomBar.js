@@ -11,17 +11,38 @@ const BottomBar_styles_1 = require("./BottomBar.styles");
 const plusIcon = require("../../../src/images/icons/plus-circle.png");
 const plusIconActive = require("../../../src/images/icons/plus-circle-1.png");
 const bellIcon = require("../../../src/images/icons/bell.png");
-const bellIconActive = require("../../../src/images/icons/bell.png");
+const bellIconActive = require("../../../src/images/icons/bell-1.png");
 const homeIcon = require("../../../src/images/icons/home.png");
 const homeIconActive = require("../../../src/images/icons/home-1.png");
 const searchIcon = require("../../../src/images/icons/search.png");
 const searchIconActive = require("../../../src/images/icons/search-1.png");
-const BottomBar = ({}) => {
+const BottomBar = ({ navigate, activeIcon, }) => {
+    console.debug(activeIcon);
     return (react_1.default.createElement(react_native_1.View, { style: BottomBar_styles_1.BottomBarStyleSheet.container },
-        react_1.default.createElement(Icon_1.Icon, { icon: homeIcon, activeIcon: homeIconActive }),
-        react_1.default.createElement(Icon_1.Icon, { icon: searchIcon, activeIcon: searchIconActive }),
-        react_1.default.createElement(Icon_1.Icon, { icon: plusIcon, activeIcon: plusIconActive }),
-        react_1.default.createElement(Icon_1.Icon, { icon: bellIcon, activeIcon: bellIconActive }),
-        react_1.default.createElement(Icon_1.Icon, { icon: bellIcon, activeIcon: bellIconActive })));
+        react_1.default.createElement(Icon_1.Icon, { onPress: () => {
+                if (activeIcon !== "Home") {
+                    navigate("Home");
+                }
+            }, icon: homeIcon, active: activeIcon === "Home", activeIcon: homeIconActive }),
+        react_1.default.createElement(Icon_1.Icon, { onPress: () => {
+                if (activeIcon !== "Search") {
+                    navigate("Search");
+                }
+            }, active: activeIcon === "Search", icon: searchIcon, activeIcon: searchIconActive }),
+        react_1.default.createElement(Icon_1.Icon, { onPress: () => {
+                if (activeIcon !== "Plus") {
+                    navigate("Plus");
+                }
+            }, active: activeIcon === "Plus", icon: plusIcon, activeIcon: plusIconActive }),
+        react_1.default.createElement(Icon_1.Icon, { onPress: () => {
+                if (activeIcon !== "Notifications") {
+                    navigate("Notifications");
+                }
+            }, active: activeIcon === "Notifications", icon: bellIcon, activeIcon: bellIconActive }),
+        react_1.default.createElement(Icon_1.Icon, { onPress: () => {
+                if (activeIcon !== "Profile") {
+                    navigate("Profile");
+                }
+            }, active: activeIcon === "Profile", icon: bellIcon, activeIcon: bellIconActive })));
 };
 exports.BottomBar = BottomBar;

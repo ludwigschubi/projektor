@@ -11,3 +11,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./HomePage"), exports);
+__exportStar(require("./SearchPage"), exports);
+__exportStar(require("./PlusPage"), exports);
+__exportStar(require("./NotificationsPage"), exports);

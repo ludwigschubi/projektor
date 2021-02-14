@@ -3,9 +3,13 @@ import { View, Image } from "react-native";
 import { TopBarStyleSheet as styles } from "./TopBar.styles";
 const projektorLogo = "../../../src/images/logos/Projektor Font Logo.jpg";
 
-export const TopBar: React.FC = ({}) => {
+interface TopBarProps {
+  style?: CssProps;
+}
+
+export const TopBar: React.FC<TopBarProps> = ({ style }) => {
   return (
-    <View style={styles.container}>
+    <View style={{ ...styles.container, ...style }}>
       <Image source={require(projektorLogo)} style={styles.logo} />
     </View>
   );
