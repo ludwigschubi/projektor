@@ -10,19 +10,21 @@ const sessions_1 = require("../../resolvers/auth/sessions");
 const Page_1 = require("../Page");
 const Button_1 = require("../../components/Button");
 const context_1 = require("../../context");
+const profile_1 = require("../../resolvers/user/profile");
 const HomePage = ({ ...props }) => {
     var _a;
-    // const { data, error, isLoading } = useQuery("sessions", getActiveSessions);
     const currentUser = context_1.useCurrentUser();
-    console.debug(currentUser);
+    const { data, error, isLoading } = profile_1.useGetCurrentProfileQuery({
+        webId: (_a = currentUser === null || currentUser === void 0 ? void 0 : currentUser.webId) !== null && _a !== void 0 ? _a : "",
+    });
     return (react_1.default.createElement(Page_1.Page, Object.assign({}, props),
         react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(Button_1.Button, { onPress: () => {
-                    var _a, _b;
-                    sessions_1.logOutOfSession((_b = (_a = currentUser[0]) === null || _a === void 0 ? void 0 : _a.sessionId) !== null && _b !== void 0 ? _b : "").then(() => {
+                    var _a;
+                    sessions_1.logOutOfSession((_a = currentUser === null || currentUser === void 0 ? void 0 : currentUser.sessionId) !== null && _a !== void 0 ? _a : "").then(() => {
                         props.navigation.navigate("Login");
                     });
-                } }, `Log out of ${(_a = currentUser[0]) === null || _a === void 0 ? void 0 : _a.webId}`),
+                } }, `Log out of ${currentUser === null || currentUser === void 0 ? void 0 : currentUser.webId}`),
             react_1.default.createElement(react_native_1.Text, null, "Home"))));
 };
 exports.HomePage = HomePage;

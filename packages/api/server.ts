@@ -11,6 +11,8 @@ const cookieSession = require("cookie-session");
 const app = express();
 const port = 3000;
 
+app.use(express.json())
+
 app.use(
   cookieSession({
     name: "session",
@@ -52,8 +54,9 @@ app.get("/handle-redirect", async (req: SessionRequest, res) => {
   }
 });
 
-app.get("/fetch", async (req: SessionRequest, res, next) => {
-  const session = await getSessionFromStorage(req.session?.sessionId as string);
+app.post("/fetch", async (req: SessionRequest, res, next) => {
+  console.debug(req.body)
+  const session = await getSessionFromStorage((req.session?.sessionId ?? req.body?.sessionId) as string);
   res.send(
     `<pre>${await (
       await session?.fetch(req.query["resource"] as string)

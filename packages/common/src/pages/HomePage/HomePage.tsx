@@ -1,6 +1,5 @@
 import React from "react";
 import { Text } from "react-native";
-import { useQuery } from "react-query";
 import {
   getActiveSessions,
   logOutOfSession,
@@ -8,6 +7,7 @@ import {
 import { Page } from "../Page";
 import { Button } from "../../components/Button";
 import { useCurrentUser } from "../../context";
+import { useGetCurrentProfileQuery } from "../../resolvers/user/profile";
 
 export interface HomePageProps {
   route?:
@@ -17,22 +17,22 @@ export interface HomePageProps {
 }
 
 export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
-  // const { data, error, isLoading } = useQuery("sessions", getActiveSessions);
   const currentUser = useCurrentUser();
-
-  console.debug(currentUser)
+  const { data, error, isLoading } = useGetCurrentProfileQuery({
+    webId: currentUser?.webId ?? "",
+  });
 
   return (
     <Page {...props}>
       <>
         <Button
           onPress={() => {
-            logOutOfSession(currentUser[0]?.sessionId ?? "").then(() => {
+            logOutOfSession(currentUser?.sessionId ?? "").then(() => {
               props.navigation.navigate("Login");
             });
           }}
         >
-          {`Log out of ${currentUser[0]?.webId}`}
+          {`Log out of ${currentUser?.webId}`}
         </Button>
         <Text>Home</Text>
       </>

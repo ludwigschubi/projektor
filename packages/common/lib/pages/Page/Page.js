@@ -28,7 +28,7 @@ const Page_styles_1 = require("./Page.styles");
 const Page = ({ children, navigation, route, noBottomBar, style, }) => {
     const currentUser = context_1.useCurrentUser();
     react_1.useEffect(() => {
-        if (currentUser.length === 0 && (route === null || route === void 0 ? void 0 : route.name) !== "Login") {
+        if (!currentUser && (route === null || route === void 0 ? void 0 : route.name) !== "Login") {
             navigation.navigate("Login");
         }
     }, []);

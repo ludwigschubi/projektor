@@ -10,4 +10,4 @@ export type UserContext =
 
 export const CurrentUser = React.createContext<UserContext[]>([]);
 
-export const useCurrentUser = () => React.useContext(CurrentUser);
+export const useCurrentUser = () => (React.useContext(CurrentUser) ?? [undefined])[0];
