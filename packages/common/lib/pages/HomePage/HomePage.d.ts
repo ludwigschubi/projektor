@@ -1,6 +1,12 @@
 import React from "react";
 export interface HomePageProps {
-    route?: Record<"Home", object | undefined>;
+    route?: {
+        name: string;
+        key: string;
+        params: {
+            sessionId: string;
+        };
+    } | undefined;
     navigation?: any;
 }
 export declare const HomePage: React.FC<HomePageProps>;

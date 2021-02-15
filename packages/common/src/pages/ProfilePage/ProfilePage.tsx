@@ -4,7 +4,9 @@ import { Page } from "../Page";
 import { ProfilePageStyleSheet as styles } from "./ProfilePage.styles";
 
 export interface ProfilePageProps {
-  route?: Record<"Home", object | undefined>;
+  route?:
+    | { name: string; key: string; params: { sessionId: string } }
+    | undefined;
   navigation?: any;
 }
 

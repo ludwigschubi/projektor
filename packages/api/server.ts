@@ -33,7 +33,7 @@ app.get("/login", async (req: SessionRequest, res, next) => {
   await session.login({
     redirectUrl: `http://localhost:${port}/handle-redirect`,
     oidcIssuer: req.params?.idp ?? "https://broker.pod.inrupt.com",
-    clientName: "Demo app",
+    clientName: "Projektor App",
     handleRedirect: redirectHandler,
   });
 });
@@ -44,14 +44,20 @@ app.get("/handle-redirect", async (req: SessionRequest, res) => {
   await session?.handleIncomingRedirect(`http://localhost:${port}${req.url}`);
 
   if (session?.info.isLoggedIn) {
-    return res.redirect("projektor://login/" + session.info.webId);
+    return res.redirect(
+      "projektor://home?" + new URLSearchParams(Object(session?.info))
+    );
+  } else {
+    return res.redirect("projektor://login");
   }
 });
 
 app.get("/fetch", async (req: SessionRequest, res, next) => {
   const session = await getSessionFromStorage(req.session?.sessionId as string);
   res.send(
-    `<pre>${await (await session?.fetch(req.query["resource"] as string))?.text()}</pre>`
+    `<pre>${await (
+      await session?.fetch(req.query["resource"] as string)
+    )?.text()}</pre>`
   );
 });
 
@@ -61,10 +67,10 @@ app.get("/logout", async (req: SessionRequest, res, next) => {
   res.send(`<p>Logged out.</p>`);
 });
 
-app.get("/", async (req: SessionRequest, res, next) => {
-  const sessionIds = await getSessionIdFromStorageAll();
-  res.send(`<p>There are currently [${sessionIds.length}] visitors.</p>`);
-});
+// app.get("/sessions", async (req: SessionRequest, res, next) => {
+//   const sessionIds = await get();
+//   res.json(sessionIds);
+// });
 
 app.listen(port, () => {
   console.log(

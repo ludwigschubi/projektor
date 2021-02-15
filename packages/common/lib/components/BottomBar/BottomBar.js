@@ -17,7 +17,6 @@ const homeIconActive = require("../../../src/assets/icons/home-1.png");
 const searchIcon = require("../../../src/assets/icons/search.png");
 const searchIconActive = require("../../../src/assets/icons/search-1.png");
 const BottomBar = ({ navigate, activeIcon, }) => {
-    console.debug(activeIcon);
     return (react_1.default.createElement(react_native_1.View, { style: BottomBar_styles_1.BottomBarStyleSheet.container },
         react_1.default.createElement(Icon_1.Icon, { onPress: () => {
                 if (activeIcon !== "Home") {

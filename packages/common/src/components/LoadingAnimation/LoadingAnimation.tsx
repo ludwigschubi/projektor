@@ -55,7 +55,7 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
           }),
         ])
       ),
-    ]).start(console.debug);
+    ]).start()
   }, []);
 
   useEffect(() => {

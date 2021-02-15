@@ -1,5 +1,5 @@
 {
-  "name": "mobile",
+  "name": "projektor",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -23,7 +23,9 @@
     "react-native-gesture-handler": "^1.10.1",
     "react-native-reanimated": "^1.13.2",
     "react-native-safe-area-context": "^3.1.9",
-    "react-native-screens": "^2.17.1"
+    "react-native-screens": "^2.17.1",
+    "react-query": "^3.9.6",
+    "webql-client": "^1.0.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
@@ -47,14 +49,7 @@
   },
   "workspaces": {
     "nohoist": [
-      "react-native",
-      "@react-navigation",
-      "react-native/**",
-      "react",
-      "react/**",
-      "@react-navigation/**",
-      "react-native-gesture-handler",
-      "hoist-non-react-statics"
+      "**"
     ]
   }
 }

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaView, StyleProp, View, ViewStyle } from "react-native";
 import { BottomBar } from "../../components/BottomBar";
-import { TopBar } from "../../components/TopBar";
+import { useCurrentUser } from "../../context";
 import { PageStyleSheet as styles } from "./Page.styles";
 
 export interface PageProps {
@@ -19,9 +19,15 @@ export const Page: React.FC<PageProps> = ({
   noBottomBar,
   style,
 }) => {
+  const currentUser = useCurrentUser();
+  useEffect(() => {
+    if (currentUser.length === 0 && route?.name !== "Login") {
+      navigation.navigate("Login");
+    }
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ ...styles.main, ...style as object}}>{children}</View>
+      <View style={{ ...styles.main, ...(style as object) }}>{children}</View>
       {!noBottomBar && (
         <BottomBar
           navigate={navigation.navigate}

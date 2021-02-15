@@ -4,7 +4,9 @@ import { Page } from "../Page";
 import { NotificationsPageStyleSheet as styles } from "./NotificationsPage.styles";
 
 export interface NotificationsPageProps {
-  route?: Record<"Home", object | undefined>;
+  route?:
+    | { name: string; key: string; params: { sessionId: string } }
+    | undefined;
   navigation?: any;
 }
 

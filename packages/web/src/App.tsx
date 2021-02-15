@@ -4,7 +4,6 @@ import "./App.css";
 import * as commons from "@projektor/common";
 
 function App() {
-  console.debug(commons);
   return (
     <div className="App">
       <header className="App-header">

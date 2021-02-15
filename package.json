@@ -7,6 +7,7 @@
   "author": "Ludwig Schubert",
   "license": "GPL-3.0",
   "scripts": {
+    "rebuild": "rimraf node_modules && rimraf packages/*/node_modules && yarn --force",
     "postinstall": "concurrently \"cd packages/common && yarn build\"",
     "dev:web": "concurrently \"cd packages/web && yarn start\"",
     "dev:mobile": "concurrently \"cd packages/mobile && yarn ios\""
@@ -17,11 +18,13 @@
     ],
     "nohoist": [
       "react-native",
-      "react-native/**"
+      "react-native/**",
+      "axios"
     ]
   },
   "private": true,
   "devDependencies": {
-    "concurrently": "^5.3.0"
+    "concurrently": "^5.3.0",
+    "rimraf": "^3.0.2"
   }
 }

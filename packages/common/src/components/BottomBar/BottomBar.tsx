@@ -21,7 +21,6 @@ export const BottomBar: React.FC<BottomBarProps> = ({
   navigate,
   activeIcon,
 }) => {
-  console.debug(activeIcon);
   return (
     <View style={styles.container}>
       <Icon

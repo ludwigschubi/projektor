@@ -15,6 +15,7 @@ export enum TextVariant {
 export const TextStyleSheet = StyleSheet.create({
   container: {
     width: "100%",
+    textAlign: "center",
   },
   [TextSize.Large]: {
     fontSize: 20,

@@ -4,7 +4,9 @@ import { Page } from "../Page";
 import { SearchPageStyleSheet as styles } from "./SearchPage.styles";
 
 export interface SearchPageProps {
-  route?: Record<"Home", object | undefined>;
+  route?:
+    | { name: string; key: string; params: { sessionId: string } }
+    | undefined;
   navigation?: any;
 }
 

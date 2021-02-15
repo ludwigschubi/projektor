@@ -4,7 +4,9 @@ import { Page } from "../Page";
 import { PlusPageStyleSheet as styles } from "./PlusPage.styles";
 
 export interface PlusPageProps {
-  route?: Record<"Home", object | undefined>;
+  route?:
+    | { name: string; key: string; params: { sessionId: string } }
+    | undefined;
   navigation?: any;
 }
 

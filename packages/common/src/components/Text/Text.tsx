@@ -22,18 +22,22 @@ export const Text: React.FC<TextProps> = ({
   size,
   variant = TextVariant.Bold,
 }) => {
-  return (
-    <TouchableOpacity onPress={onPress}>
-      <TextComponent
-        style={{
-          ...styles.container,
-          ...(style as object),
-          ...(size ? styles[size] : {}),
-          ...(variant ? styles[variant] : {}),
-        }}
-      >
-        {children}
-      </TextComponent>
-    </TouchableOpacity>
+  const textComponent = (
+    <TextComponent
+      style={{
+        ...styles.container,
+        ...(style as object),
+        ...(size ? styles[size] : {}),
+        ...(variant ? styles[variant] : {}),
+      }}
+    >
+      {children}
+    </TextComponent>
+  );
+
+  return onPress ? (
+    <TouchableOpacity onPress={onPress}>{textComponent}</TouchableOpacity>
+  ) : (
+    textComponent
   );
 };
