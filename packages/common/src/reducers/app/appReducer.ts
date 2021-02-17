@@ -7,6 +7,7 @@ import { USER_LOGIN, USER_LOGOUT, USER_SET_SESSIONS } from './appActions';
 export const initialAppState = {
   currentUser: [] as LoggedInUser[],
 };
+
 export type AppReducer = Reducer<
   typeof initialAppState,
   { type: string; payload: any }
@@ -17,6 +18,7 @@ export const appReducer = (
   action: ReducerAction<AppReducer>,
 ) => {
   console.info('App Reducer received action of type: ' + action.type);
+  console.info('With the payload: ');
   console.info(action.payload);
   switch (action.type) {
     case USER_SET_SESSIONS:

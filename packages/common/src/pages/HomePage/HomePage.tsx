@@ -8,7 +8,7 @@ import {
 import { Page } from '../Page';
 import { Button } from '../../components/Button';
 import { useCurrentUser } from '../../context';
-// import { useGetCurrentProfileQuery } from '../../resolvers/user/profile';
+import { useGetCurrentProfileQuery } from '../../resolvers/user/profile';
 import { useAppContext } from '../../reducers';
 import { USER_LOGOUT } from '../../reducers/app/appActions';
 
@@ -22,12 +22,11 @@ export interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
   const currentUser = useCurrentUser();
   const { dispatch } = useAppContext();
-  // const { data, error, isLoading } = useGetCurrentProfileQuery({
-  //   webId: currentUser?.webId ?? '',
-  // });
+  const { data, error, isLoading } = useGetCurrentProfileQuery();
+  console.debug(data);
 
   return (
-    <Page {...props}>
+    <Page {...props} loading={isLoading}>
       <>
         {currentUser && (
           <Button

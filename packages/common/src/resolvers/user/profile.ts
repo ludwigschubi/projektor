@@ -7,22 +7,17 @@ export interface AuthenticatedRequestArguments {
   sessionId?: string;
 }
 
-export interface CurrentProfileArguments extends AuthenticatedRequestArguments {
-  webId: string;
-}
-
-export const useGetCurrentProfileQuery = ({
-  webId,
-}: CurrentProfileArguments) => {
+export const useGetCurrentProfileQuery = () => {
   const { sessionId } = useCurrentUser() ?? {};
-  return useQuery('profile', () => getCurrentProfile({ webId, sessionId }));
+  return useQuery('profile', () => getCurrentProfile({ sessionId }));
 };
 
-async function getCurrentProfile({ webId }: CurrentProfileArguments) {
+async function getCurrentProfile({ sessionId }: AuthenticatedRequestArguments) {
   const profile = (
-    await axios.get(`http://localhost:3000/fetch?resource=${webId}`, {
-      withCredentials: true,
+    await axios.post(`http://localhost:3000/user`, {
+      sessionId,
     })
   ).data;
+  console.debug(profile);
   return profile;
 }

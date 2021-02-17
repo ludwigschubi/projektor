@@ -2,9 +2,8 @@ import { StyleSheet } from 'react-native';
 
 export const LoadingAnimationStyleSheet = StyleSheet.create({
   container: {
-    height: '100%',
-    width: '100%',
     zIndex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   animation: {
     position: 'absolute',

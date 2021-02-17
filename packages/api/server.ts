@@ -54,7 +54,7 @@ app.get('/handle-redirect', redirectHandler);
 app.post('/logout', logoutHandler);
 
 // User routes
-app.post('/user');
+app.post('/user', getProfileHandler);
 
 app.listen(port, () => {
   console.log(

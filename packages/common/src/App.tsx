@@ -66,9 +66,6 @@ export const ReactNativeApp: React.FC = () => {
         dispatch({ type: USER_SET_SESSIONS, payload: sessions });
       }
     });
-    return (async () => {
-      await saveActiveSessionsToStorage(state.currentUser);
-    }) as () => void;
   }, []);
 
   return (
