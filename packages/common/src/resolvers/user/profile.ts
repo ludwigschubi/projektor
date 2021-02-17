@@ -1,6 +1,7 @@
-import axios from "axios";
-import { useQuery } from "react-query";
-import { useCurrentUser } from "../../context";
+import axios from 'axios';
+import { useQuery } from 'react-query';
+
+import { useCurrentUser } from '../../context';
 
 export interface AuthenticatedRequestArguments {
   sessionId?: string;
@@ -14,15 +15,14 @@ export const useGetCurrentProfileQuery = ({
   webId,
 }: CurrentProfileArguments) => {
   const { sessionId } = useCurrentUser() ?? {};
-  return useQuery("profile", () => getCurrentProfile({ webId, sessionId }));
+  return useQuery('profile', () => getCurrentProfile({ webId, sessionId }));
 };
 
-async function getCurrentProfile({ webId, sessionId }: CurrentProfileArguments) {
+async function getCurrentProfile({ webId }: CurrentProfileArguments) {
   const profile = (
-    await axios.post(`http://localhost:3000/fetch?resource=${webId}`, {
-      sessionId,
+    await axios.get(`http://localhost:3000/fetch?resource=${webId}`, {
+      withCredentials: true,
     })
   ).data;
-  console.debug(profile)
   return profile;
 }

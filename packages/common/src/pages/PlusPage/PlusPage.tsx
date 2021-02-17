@@ -1,7 +1,9 @@
-import React from "react";
-import { Text } from "react-native";
-import { Page } from "../Page";
-import { PlusPageStyleSheet as styles } from "./PlusPage.styles";
+import React from 'react';
+import { Text } from 'react-native';
+
+import { Page } from '../Page';
+
+// import { PlusPageStyleSheet as styles } from './PlusPage.styles';
 
 export interface PlusPageProps {
   route?:

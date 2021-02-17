@@ -1,6 +1,6 @@
-import React from "react";
+import { useAppContext } from '../reducers';
 
-export type UserContext =
+export type LoggedInUser =
   | {
       sessionId: string;
       isLoggedIn: string;
@@ -8,6 +8,7 @@ export type UserContext =
     }
   | undefined;
 
-export const CurrentUser = React.createContext<UserContext[]>([]);
-
-export const useCurrentUser = () => (React.useContext(CurrentUser) ?? [undefined])[0];
+export const useCurrentUser = () => {
+  const { state: appState } = useAppContext();
+  return appState.currentUser && appState.currentUser[0];
+};

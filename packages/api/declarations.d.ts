@@ -1,2 +1,2 @@
-declare module 'jest-diff'
-declare module 'pretty-format'
+declare module 'jest-diff';
+declare module 'pretty-format';

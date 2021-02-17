@@ -3,6 +3,8 @@ module.exports = {
   plugins: ['import'],
   extends: '@react-native-community',
   rules: {
+    'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/no-unused-vars': 0,
     'import/order': [
       'error',
       {
@@ -18,4 +20,5 @@ module.exports = {
       },
     ],
   },
+  ignorePatterns: ['*/**/lib'],
 };

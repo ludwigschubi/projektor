@@ -1,10 +1,14 @@
-import React, { useEffect, useRef } from "react";
-import { Animated, View, Linking } from "react-native";
-import { Button } from "../../components";
-import { LoadingAnimation } from "../../components/LoadingAnimation";
-import { Page } from "../Page";
-import { LoginPageStyleSheet as styles } from "./LoginPage.styles";
-const logoMobile = require("../../../src/assets/images/Logo Mobile.png");
+import React, { useEffect, useRef } from 'react';
+import { Animated, View, Linking } from 'react-native';
+
+import { Button } from '../../components';
+import { LoadingAnimation } from '../../components/LoadingAnimation';
+import { useCurrentUser } from '../../context';
+import { Page } from '../Page';
+
+import { LoginPageStyleSheet as styles } from './LoginPage.styles';
+
+const logoMobile = require('../../../src/assets/images/Logo Mobile.png');
 
 export interface LoginPageProps {
   route?:
@@ -15,6 +19,7 @@ export interface LoginPageProps {
 
 export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     Animated.timing(fadeAnim, {
@@ -23,6 +28,12 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
       useNativeDriver: true,
     }).start();
   }, []);
+
+  useEffect(() => {
+    if (currentUser?.isLoggedIn) {
+      props.navigation.navigate('Home');
+    }
+  }, [currentUser]);
 
   return (
     <Page {...props} noBottomBar style={styles.container}>
@@ -36,25 +47,22 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
       <View style={styles.loginOptions}>
         <Button
           onPress={() => {
-            Linking.openURL("http://localhost:3000/login");
-          }}
-        >
+            Linking.openURL('http://localhost:3000/login');
+          }}>
           Login
         </Button>
         <Button
           style={styles.communityButton}
           onPress={() => {
-            Linking.openURL("http://localhost:3000/login");
-          }}
-        >
+            Linking.openURL('http://localhost:3000/login');
+          }}>
           Login with community account
         </Button>
         <Button
           style={styles.sovereignButton}
           onPress={() => {
-            Linking.openURL("http://localhost:3000/login");
-          }}
-        >
+            Linking.openURL('http://localhost:3000/login');
+          }}>
           Login with sovereign account
         </Button>
       </View>

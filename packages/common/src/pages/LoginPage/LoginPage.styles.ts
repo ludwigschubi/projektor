@@ -1,9 +1,10 @@
-import { StyleSheet } from "react-native";
-import colors from "../../constants/colors";
+import { StyleSheet } from 'react-native';
+
+import colors from '../../constants/colors';
 
 export const LoginPageStyleSheet = StyleSheet.create({
   container: {
-    display: "flex",
+    display: 'flex',
     alignItems: 'center',
   },
   imageWrapper: {
@@ -20,11 +21,11 @@ export const LoginPageStyleSheet = StyleSheet.create({
     maxHeight: 68,
   },
   loginOptions: {
-    width: "100%",
-    position: "absolute",
+    width: '100%',
+    position: 'absolute',
     left: 16,
     bottom: 64,
-    display: "flex",
+    display: 'flex',
     zIndex: 2,
   },
   communityButton: {

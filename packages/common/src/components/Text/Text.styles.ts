@@ -1,21 +1,21 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export enum TextSize {
-  Small = "Small",
-  Medium = "Medium",
-  Large = "Large",
+  Small = 'Small',
+  Medium = 'Medium',
+  Large = 'Large',
 }
 
 export enum TextVariant {
-  Regular = "Regular",
-  Medium = "Medium",
-  Bold = "Bold",
+  Regular = 'Regular',
+  Medium = 'Medium',
+  Bold = 'Bold',
 }
 
 export const TextStyleSheet = StyleSheet.create({
   container: {
-    width: "100%",
-    textAlign: "center",
+    width: '100%',
+    textAlign: 'center',
   },
   [TextSize.Large]: {
     fontSize: 20,
@@ -27,12 +27,12 @@ export const TextStyleSheet = StyleSheet.create({
     fontSize: 12,
   },
   [TextVariant.Regular]: {
-    fontFamily: "HelveticaNeue-Regular",
+    fontFamily: 'HelveticaNeue-Regular',
   },
   [TextVariant.Medium]: {
-    fontFamily: "HelveticaNeue-Medium",
+    fontFamily: 'HelveticaNeue-Medium',
   },
   [TextVariant.Bold]: {
-    fontFamily: "HelveticaNeue-Bold",
+    fontFamily: 'HelveticaNeue-Bold',
   },
 });

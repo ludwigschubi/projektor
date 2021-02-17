@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   TouchableOpacity,
   Text as TextComponent,
   StyleProp,
   TextStyle,
-} from "react-native";
-import { TextSize, TextStyleSheet as styles, TextVariant } from "./Text.styles";
+} from 'react-native';
+
+import { TextSize, TextStyleSheet as styles, TextVariant } from './Text.styles';
 
 export interface TextProps {
   children: React.ReactNode;
@@ -29,8 +30,7 @@ export const Text: React.FC<TextProps> = ({
         ...(style as object),
         ...(size ? styles[size] : {}),
         ...(variant ? styles[variant] : {}),
-      }}
-    >
+      }}>
       {children}
     </TextComponent>
   );

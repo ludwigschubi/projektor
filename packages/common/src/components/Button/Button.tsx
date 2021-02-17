@@ -1,8 +1,10 @@
-import React from "react";
-import { View, TouchableOpacity, StyleProp, ViewStyle } from "react-native";
-import { Text } from "../Text";
-import { TextSize, TextVariant } from "../Text/Text.styles";
-import { ButtonStyleSheet as styles } from "./Button.styles";
+import React from 'react';
+import { View, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+
+import { Text } from '../Text';
+import { TextSize, TextVariant } from '../Text/Text.styles';
+
+import { ButtonStyleSheet as styles } from './Button.styles';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -11,9 +13,12 @@ interface ButtonProps {
 }
 
 export const Button: React.FC<ButtonProps> = ({ onPress, style, children }) => {
-  if (typeof children === "string") {
+  if (typeof children === 'string') {
     children = (
-      <Text size={TextSize.Medium} variant={TextVariant.Bold} style={styles.text}>
+      <Text
+        size={TextSize.Medium}
+        variant={TextVariant.Bold}
+        style={styles.text}>
         {children}
       </Text>
     );

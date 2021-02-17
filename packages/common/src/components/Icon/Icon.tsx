@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Image,
   ImageSourcePropType,
   TouchableOpacity,
-} from "react-native";
-import { IconStyleSheet as styles } from "./Icon.styles";
+} from 'react-native';
+
+import { IconStyleSheet as styles } from './Icon.styles';
 
 interface IconProps {
   icon: ImageSourcePropType;

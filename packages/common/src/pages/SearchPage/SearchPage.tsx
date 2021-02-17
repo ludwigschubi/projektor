@@ -1,7 +1,9 @@
-import React from "react";
-import { Text } from "react-native";
-import { Page } from "../Page";
-import { SearchPageStyleSheet as styles } from "./SearchPage.styles";
+import React from 'react';
+import { Text } from 'react-native';
+
+import { Page } from '../Page';
+
+// import { SearchPageStyleSheet as styles } from './SearchPage.styles';
 
 export interface SearchPageProps {
   route?:

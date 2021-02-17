@@ -1,1 +1,1 @@
-export * from "./LoadingAnimation";
+export * from './LoadingAnimation';

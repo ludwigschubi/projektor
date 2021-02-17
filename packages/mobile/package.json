@@ -1,5 +1,5 @@
 {
-  "name": "projektor",
+  "name": "projektor-mobile",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -13,34 +13,22 @@
   "dependencies": {
     "@babel/runtime": "^7.12.13",
     "@projektor/common": "1.0.0",
-    "@react-native-community/masked-view": "^0.1.10",
-    "@react-navigation/native": "^5.9.2",
-    "@react-navigation/routers": "^5.7.1",
-    "@react-navigation/stack": "^5.14.2",
-    "hoist-non-react-statics": "^3.3.2",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "^1.10.1",
-    "react-native-reanimated": "^1.13.2",
-    "react-native-safe-area-context": "^3.1.9",
-    "react-native-screens": "^2.17.1",
-    "react-query": "^3.9.6",
-    "webql-client": "^1.0.11"
+    "react-native-encrypted-storage": "^4.0.1",
+    "react-native-safe-area-context": "^3.1.9"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
     "@babel/runtime": "^7.12.13",
-    "@react-native-community/eslint-config": "^2.0.0",
+    "@babel/core": "^7.12.16",
     "@types/jest": "^26.0.20",
     "@types/react": "^17.0.1",
     "@types/react-native": "^0.63.48",
     "@types/react-test-renderer": "^17.0.0",
     "babel-jest": "^26.6.3",
-    "eslint": "^7.19.0",
-    "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
     "metro-react-native-babel-preset": "^0.65.0",
-    "prettier": "^2.2.1",
     "react-test-renderer": "16.13.1",
     "typescript": "^4.1.5"
   },

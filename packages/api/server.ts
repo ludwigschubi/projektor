@@ -1,83 +1,64 @@
-import express from "express";
-import { SessionRequest } from "./lib";
-import {
-  getSessionFromStorage,
-  getSessionIdFromStorageAll,
-  Session,
-} from "@inrupt/solid-client-authn-node";
+import { getSessionFromStorage } from '@inrupt/solid-client-authn-node';
+import express from 'express';
+import { graph, Fetcher } from 'rdflib';
 
-const cookieSession = require("cookie-session");
+import {
+  ResourceRequest,
+  getSessionIdFromRequest,
+  getProfileHandler,
+  SessionRequest,
+} from './src';
+import {
+  loginHandler,
+  logoutHandler,
+  redirectHandler,
+} from './src/handlers/auth';
+
+const cookieSession = require('cookie-session');
 
 const app = express();
-const port = 3000;
+export const port = 3000;
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(
   cookieSession({
-    name: "session",
+    name: 'session',
     // These keys are required by cookie-session to sign the cookies.
     keys: [
-      "Required, but value not relevant for this demo - key1",
-      "Required, but value not relevant for this demo - key2",
+      'Required, but value not relevant for this demo - key1',
+      'Required, but value not relevant for this demo - key2',
     ],
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-  })
+  }),
 );
 
-app.get("/login", async (req: SessionRequest, res, next) => {
-  const session = new Session();
-  req.session = { sessionId: session.info.sessionId };
-  const redirectHandler = (url: string) => {
-    res.redirect(url);
-  };
-
-  await session.login({
-    redirectUrl: `http://localhost:${port}/handle-redirect`,
-    oidcIssuer: req.params?.idp ?? "https://broker.pod.inrupt.com",
-    clientName: "Projektor App",
-    handleRedirect: redirectHandler,
-  });
-});
-
-app.get("/handle-redirect", async (req: SessionRequest, res) => {
-  const session = await getSessionFromStorage(req.session?.sessionId as string);
-
-  await session?.handleIncomingRedirect(`http://localhost:${port}${req.url}`);
-
-  if (session?.info.isLoggedIn) {
-    return res.redirect(
-      "projektor://home?" + new URLSearchParams(Object(session?.info))
-    );
-  } else {
-    return res.redirect("projektor://login");
-  }
-});
-
-app.post("/fetch", async (req: SessionRequest, res, next) => {
-  console.debug(req.body)
-  const session = await getSessionFromStorage((req.session?.sessionId ?? req.body?.sessionId) as string);
-  res.send(
-    `<pre>${await (
-      await session?.fetch(req.query["resource"] as string)
-    )?.text()}</pre>`
+app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
+  const existingSession = await getSessionFromStorage(
+    getSessionIdFromRequest(req),
   );
+  if (existingSession?.info?.isLoggedIn && existingSession.info.webId) {
+    const sessionStore = graph();
+    const sessionFetcher = new Fetcher(sessionStore);
+    sessionFetcher._fetch = existingSession.fetch;
+    req.webId = existingSession.info.webId;
+    req.fetcher = sessionFetcher;
+    req.store = sessionStore;
+  }
+  next();
 });
 
-app.get("/logout", async (req: SessionRequest, res, next) => {
-  const session = await getSessionFromStorage(req.session?.sessionId as string);
-  session?.logout();
-  res.send(`<p>Logged out.</p>`);
-});
+// Auth routes
+app.get('/login', loginHandler);
+app.get('/handle-redirect', redirectHandler);
+app.post('/logout', logoutHandler);
 
-// app.get("/sessions", async (req: SessionRequest, res, next) => {
-//   const sessionIds = await get();
-//   res.json(sessionIds);
-// });
+// User routes
+app.post('/user');
 
 app.listen(port, () => {
   console.log(
     `Server running on port [${port}]. ` +
-      `Visit [http://localhost:${port}/login] to log in to [broker.pod.inrupt.com].`
+      `Visit [http://localhost:${port}/login] to log in to [broker.pod.inrupt.com].`,
   );
 });

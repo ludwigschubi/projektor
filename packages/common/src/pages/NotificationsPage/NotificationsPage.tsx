@@ -1,7 +1,9 @@
-import React from "react";
-import { Text } from "react-native";
-import { Page } from "../Page";
-import { NotificationsPageStyleSheet as styles } from "./NotificationsPage.styles";
+import React from 'react';
+import { Text } from 'react-native';
+
+import { Page } from '../Page';
+
+// import { NotificationsPageStyleSheet as styles } from './NotificationsPage.styles';
 
 export interface NotificationsPageProps {
   route?:
@@ -10,7 +12,9 @@ export interface NotificationsPageProps {
   navigation?: any;
 }
 
-export const NotificationsPage: React.FC<NotificationsPageProps> = ({ ...props }) => {
+export const NotificationsPage: React.FC<NotificationsPageProps> = ({
+  ...props
+}) => {
   return (
     <Page {...props}>
       <>

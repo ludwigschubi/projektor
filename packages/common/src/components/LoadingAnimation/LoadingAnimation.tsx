@@ -4,14 +4,15 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from "react";
-import { ImageSourcePropType, Dimensions, Animated, Image } from "react-native";
-import { LoadingAnimationStyleSheet as styles } from "./LoadingAnimation.styles";
+} from 'react';
+import { ImageSourcePropType, Dimensions, Animated } from 'react-native';
 
-const LOADING_ANIMATION_1 = require("../../../src/assets/images/LoadingAnimation_1.png");
-const LOADING_ANIMATION_2 = require("../../../src/assets/images/LoadingAnimation_2.png");
-const LOADING_ANIMATION_3 = require("../../../src/assets/images/LoadingAnimation_3.png");
-const LOADING_ANIMATION_4 = require("../../../src/assets/images/LoadingAnimation_4.png");
+import { LoadingAnimationStyleSheet as styles } from './LoadingAnimation.styles';
+
+const LOADING_ANIMATION_1 = require('../../../src/assets/images/LoadingAnimation_1.png');
+const LOADING_ANIMATION_2 = require('../../../src/assets/images/LoadingAnimation_2.png');
+const LOADING_ANIMATION_3 = require('../../../src/assets/images/LoadingAnimation_3.png');
+const LOADING_ANIMATION_4 = require('../../../src/assets/images/LoadingAnimation_4.png');
 
 interface LoadingAnimationProps {
   active?: boolean;
@@ -53,9 +54,9 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
             duration: 1500,
             useNativeDriver: true,
           }),
-        ])
+        ]),
       ),
-    ]).start()
+    ]).start();
   }, []);
 
   useEffect(() => {
@@ -71,17 +72,17 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   const randomStyles = useCallback(
     () =>
       generateRandomStyles(
-        Dimensions.get("window").height,
-        Dimensions.get("window").width
+        Dimensions.get('window').height,
+        Dimensions.get('window').width,
       ),
-    [activeAnimation]
+    [activeAnimation],
   );
 
   const opacity = useMemo(
     () => ({
       opacity: (fadeAnim as unknown) as number,
     }),
-    [fadeAnim]
+    [fadeAnim],
   );
 
   return active ? (

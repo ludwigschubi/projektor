@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export const BottomBarStyleSheet = StyleSheet.create({
   container: {
@@ -8,9 +8,9 @@ export const BottomBarStyleSheet = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 8,
     flexDirection: 'row',
-    backgroundColor: "white",
-    justifyContent: "space-between",
-    alignItems: "center",
+    backgroundColor: 'white',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     borderTopWidth: 1,
     borderTopColor: '#dddddd',
   },
