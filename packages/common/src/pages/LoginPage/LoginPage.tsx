@@ -54,16 +54,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
         <Button
           style={styles.communityButton}
           onPress={() => {
-            Linking.openURL('http://localhost:3000/login');
+            Linking.openURL(
+              `http://localhost:3000/login?idp=${encodeURIComponent(
+                'https://solidcommunity.net',
+              )}`,
+            );
           }}>
           Login with community account
-        </Button>
-        <Button
-          style={styles.sovereignButton}
-          onPress={() => {
-            Linking.openURL('http://localhost:3000/login');
-          }}>
-          Login with sovereign account
         </Button>
       </View>
     </Page>

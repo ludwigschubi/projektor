@@ -64,13 +64,16 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
+    const animation = setTimeout(() => {
       if (activeAnimation === 4) {
         setActiveAnimation(1);
       } else {
         setActiveAnimation(activeAnimation + 1);
       }
     }, 3000);
+    return () => {
+      clearTimeout(animation);
+    };
   }, [activeAnimation]);
 
   const randomStyles = useCallback(

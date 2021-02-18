@@ -1,11 +1,14 @@
-import { getSessionFromStorage } from '@inrupt/solid-client-authn-node';
+import {
+  getSessionFromStorage,
+  Session,
+} from '@inrupt/solid-client-authn-node';
 import express from 'express';
 import { graph, Fetcher } from 'rdflib';
 
 import {
   ResourceRequest,
   getSessionIdFromRequest,
-  getProfileHandler,
+  profileHandler,
   SessionRequest,
 } from './src';
 import {
@@ -37,8 +40,12 @@ app.use(
 app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
   const existingSession = await getSessionFromStorage(
     getSessionIdFromRequest(req),
-  );
-  if (existingSession?.info?.isLoggedIn && existingSession.info.webId) {
+  ).catch(() => {
+    res.send(403);
+    next();
+    return {} as Session;
+  });
+  if (existingSession?.info.isLoggedIn && existingSession.info.webId) {
     const sessionStore = graph();
     const sessionFetcher = new Fetcher(sessionStore);
     sessionFetcher._fetch = existingSession.fetch;
@@ -62,7 +69,7 @@ app.post('/logout', logoutHandler);
 app.post('/session', sessionAliveHandler);
 
 // User routes
-app.post('/user', getProfileHandler);
+app.post('/user', profileHandler);
 
 app.listen(port, () => {
   console.log(

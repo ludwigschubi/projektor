@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { SafeAreaView, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -22,15 +22,17 @@ import {
 } from './resolvers';
 import { AppReducerContext, useAppReducer } from './reducers';
 import { USER_LOGIN, USER_SET_SESSIONS } from './reducers/app/appActions';
+import { LoadingAnimation } from './components/LoadingAnimation';
 
 const Stack = createStackNavigator();
 
 export const ReactNativeApp: React.FC = () => {
   const [state, dispatch] = useAppReducer();
+  const [loadUser, setLoadUser] = useState<boolean>(false);
 
   const config = {
     screens: {
-      initialRouteName: 'Login',
+      initialRouteName: 'Home',
       Login: 'login',
       Home: 'home',
       Profile: 'user',
@@ -61,14 +63,20 @@ export const ReactNativeApp: React.FC = () => {
   };
 
   useEffect(() => {
+    setLoadUser(true);
     getActiveSessionsFromStorage().then((sessions) => {
       if (sessions && sessions.length > 0) {
         dispatch({ type: USER_SET_SESSIONS, payload: sessions });
       } else {
         dispatch({ type: USER_SET_SESSIONS, payload: [] });
       }
+      setLoadUser(false);
     });
   }, []);
+
+  if (loadUser) {
+    return <LoadingAnimation />;
+  }
 
   return (
     <QueryClientProvider client={new QueryClient()}>

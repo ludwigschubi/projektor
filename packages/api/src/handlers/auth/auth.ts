@@ -16,7 +16,7 @@ export const loginHandler = async (req: SessionRequest, res: Response) => {
 
   await session.login({
     redirectUrl: `http://localhost:${port}/handle-redirect`,
-    oidcIssuer: req.params?.idp ?? 'https://broker.pod.inrupt.com',
+    oidcIssuer: (req.query?.idp as string) ?? 'https://broker.pod.inrupt.com',
     clientName: 'Projektor App',
     handleRedirect: redirectHandler,
   });
