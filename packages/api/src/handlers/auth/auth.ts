@@ -8,25 +8,30 @@ import { port } from '../../../server';
 import { getSessionIdFromRequest, SessionRequest } from '../../utils';
 
 export const loginHandler = async (req: SessionRequest, res: Response) => {
-  const existingSession = await getSessionFromStorage(
-    getSessionIdFromRequest(req),
-  );
-  if (!existingSession) {
-    const session = new Session();
-    req.session = { sessionId: session.info.sessionId };
-    const redirectHandler = (url: string) => {
-      res.redirect(url);
-    };
+  const session = new Session();
+  req.session = { sessionId: session.info.sessionId };
+  const redirectHandler = (url: string) => {
+    res.redirect(url);
+  };
 
-    await session.login({
-      redirectUrl: `http://localhost:${port}/handle-redirect`,
-      oidcIssuer: req.params?.idp ?? 'https://broker.pod.inrupt.com',
-      clientName: 'Projektor App',
-      handleRedirect: redirectHandler,
-    });
-  } else {
-    res.redirect('/handle-redirect');
-  }
+  await session.login({
+    redirectUrl: `http://localhost:${port}/handle-redirect`,
+    oidcIssuer: req.params?.idp ?? 'https://broker.pod.inrupt.com',
+    clientName: 'Projektor App',
+    handleRedirect: redirectHandler,
+  });
+};
+
+export const sessionAliveHandler = async (
+  req: SessionRequest,
+  res: Response,
+) => {
+  const {
+    info: { isLoggedIn },
+  } = ((await getSessionFromStorage(
+    getSessionIdFromRequest(req),
+  )) as Session) ?? { info: { isLoggedIn: false } };
+  res.json({ isLoggedIn });
 };
 
 export const redirectHandler = async (req: SessionRequest, res: Response) => {

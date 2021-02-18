@@ -9,15 +9,16 @@ export interface AuthenticatedRequestArguments {
 
 export const useGetCurrentProfileQuery = () => {
   const { sessionId } = useCurrentUser() ?? {};
-  return useQuery('profile', () => getCurrentProfile({ sessionId }));
+  return useQuery('profile', () => getCurrentProfile({ sessionId }), {
+    staleTime: Infinity,
+  });
 };
 
 async function getCurrentProfile({ sessionId }: AuthenticatedRequestArguments) {
   const profile = (
-    await axios.post(`http://localhost:3000/user`, {
+    await axios.post('http://localhost:3000/user', {
       sessionId,
     })
   ).data;
-  console.debug(profile);
   return profile;
 }

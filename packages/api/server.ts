@@ -12,6 +12,7 @@ import {
   loginHandler,
   logoutHandler,
   redirectHandler,
+  sessionAliveHandler,
 } from './src/handlers/auth';
 
 const cookieSession = require('cookie-session');
@@ -44,6 +45,12 @@ app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
     req.webId = existingSession.info.webId;
     req.fetcher = sessionFetcher;
     req.store = sessionStore;
+  } else if (
+    req.path !== '/login' &&
+    req.path !== '/session' &&
+    req.path !== '/handle-redirect'
+  ) {
+    res.send(403);
   }
   next();
 });
@@ -52,6 +59,7 @@ app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
 app.get('/login', loginHandler);
 app.get('/handle-redirect', redirectHandler);
 app.post('/logout', logoutHandler);
+app.post('/session', sessionAliveHandler);
 
 // User routes
 app.post('/user', getProfileHandler);

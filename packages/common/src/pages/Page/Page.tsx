@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { SafeAreaView, StyleProp, View, ViewStyle } from 'react-native';
+import {
+  SafeAreaView,
+  StyleProp,
+  View,
+  ViewStyle,
+  StyleSheetProperties,
+} from 'react-native';
 
 import { BottomBar } from '../../components/BottomBar';
 import { LoadingAnimation } from '../../components/LoadingAnimation';
@@ -9,7 +15,9 @@ import { PageStyleSheet as styles } from './Page.styles';
 
 export interface PageProps {
   children?: React.ReactNode | React.ReactNode[];
-  route?: Record<string, string | object | undefined> | undefined;
+  route?:
+    | { name: string; key: string; params: { sessionId: string } }
+    | undefined;
   navigation?: any;
   noBottomBar?: boolean;
   loading?: boolean;
@@ -34,8 +42,10 @@ export const Page: React.FC<PageProps> = ({
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <LoadingAnimation active={loading}></LoadingAnimation>
-        <View style={{ ...styles.main, ...(style as object) }}>{children}</View>
+        <LoadingAnimation active={loading} />
+        <View style={{ ...styles.main, ...(style as StyleSheetProperties) }}>
+          {children}
+        </View>
         {!noBottomBar && (
           <BottomBar
             navigate={navigation.navigate}

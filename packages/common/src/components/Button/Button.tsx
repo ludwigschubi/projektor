@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleProp, ViewStyle } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  StyleProp,
+  ViewStyle,
+  StyleSheetProperties,
+} from 'react-native';
 
 import { Text } from '../Text';
 import { TextSize, TextVariant } from '../Text/Text.styles';
@@ -25,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({ onPress, style, children }) => {
   }
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={{ ...styles.container, ...(style as object) }}>
+      <View style={{ ...styles.container, ...(style as StyleSheetProperties) }}>
         {children}
       </View>
     </TouchableOpacity>

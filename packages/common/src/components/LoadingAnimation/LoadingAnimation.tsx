@@ -41,7 +41,7 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
   const [activeAnimation, setActiveAnimation] = useState(1);
   const fadeAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    Animated.parallel([
+    const animation = Animated.parallel([
       Animated.loop(
         Animated.sequence([
           Animated.timing(fadeAnim, {
@@ -56,7 +56,11 @@ export const LoadingAnimation: React.FC<LoadingAnimationProps> = ({
           }),
         ]),
       ),
-    ]).start();
+    ]);
+    animation.start();
+    return () => {
+      animation.stop();
+    };
   }, []);
 
   useEffect(() => {

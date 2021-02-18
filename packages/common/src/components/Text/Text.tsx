@@ -4,6 +4,7 @@ import {
   Text as TextComponent,
   StyleProp,
   TextStyle,
+  StyleSheetProperties,
 } from 'react-native';
 
 import { TextSize, TextStyleSheet as styles, TextVariant } from './Text.styles';
@@ -27,7 +28,7 @@ export const Text: React.FC<TextProps> = ({
     <TextComponent
       style={{
         ...styles.container,
-        ...(style as object),
+        ...(style as StyleSheetProperties),
         ...(size ? styles[size] : {}),
         ...(variant ? styles[variant] : {}),
       }}>

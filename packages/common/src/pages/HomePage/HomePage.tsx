@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { Text, Linking } from 'react-native';
 
 import {
   logOutOfSession,
@@ -22,8 +22,20 @@ export interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
   const currentUser = useCurrentUser();
   const { dispatch } = useAppContext();
-  const { data, error, isLoading } = useGetCurrentProfileQuery();
-  console.debug(data);
+  const { error: profileQueryError, isLoading } = useGetCurrentProfileQuery();
+
+  if (
+    (profileQueryError as Error)?.message.includes('AUTH_ERROR') &&
+    currentUser
+  ) {
+    logOutOfSession(currentUser.sessionId).then(() => {
+      removeSessionFromStorage(currentUser.sessionId);
+      dispatch({
+        type: USER_LOGOUT,
+        payload: currentUser.sessionId,
+      });
+    });
+  }
 
   return (
     <Page {...props} loading={isLoading}>
@@ -46,6 +58,12 @@ export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
           </Button>
         )}
         <Text>Home</Text>
+        <Button
+          onPress={() => {
+            Linking.openURL('http://localhost:3000/login');
+          }}>
+          Login to another account
+        </Button>
       </>
     </Page>
   );

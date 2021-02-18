@@ -3,8 +3,9 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 
 import { LoggedInUser } from '../../context';
 
-export const getActiveSessions = async () => {
-  return (await axios.get('http://localhost:3000/sessions')).data;
+export const testSession = async (sessionId: string) => {
+  return (await axios.post('http://localhost:3000/session', { sessionId })).data
+    ?.isLoggedIn;
 };
 
 export const logOutOfSession = (sessionId: string) => {
@@ -17,14 +18,32 @@ export const getActiveSessionsFromStorage = async () => {
       await EncryptedStorage.getItem('user-sessions'),
     );
     console.debug(`RETRIEVING SESSION BY ${sessions[0]?.webId}`);
-    return sessions as LoggedInUser[];
+    const sessionActivity = await Promise.all(
+      sessions.map(async (session: LoggedInUser) => {
+        return await testSession(session?.sessionId as string);
+      }),
+    );
+    const activeSessions = sessions.filter(
+      (_: LoggedInUser, index: number) => sessionActivity[index],
+    );
+    const passiveSessions = sessions.filter(
+      (_: LoggedInUser, index: number) => !sessionActivity[index],
+    );
+    await Promise.all(
+      passiveSessions.map(
+        async (session: LoggedInUser) =>
+          await removeSessionFromStorage(session?.sessionId as string),
+      ),
+    );
+
+    return activeSessions;
   } catch {
     return undefined;
   }
 };
 
 export const saveActiveSessionsToStorage = async (sessions: LoggedInUser[]) => {
-  if (sessions)
+  if (sessions) {
     try {
       if (sessions.length > 0) {
         console.debug(`SAVING SESSION BY ${sessions[0]?.webId}`);
@@ -38,10 +57,11 @@ export const saveActiveSessionsToStorage = async (sessions: LoggedInUser[]) => {
     } catch {
       return undefined;
     }
+  }
 };
 
 export const removeSessionFromStorage = async (id: string) => {
-  if (id)
+  if (id) {
     try {
       const sessions = JSON.parse(
         await EncryptedStorage.getItem('user-sessions'),
@@ -61,4 +81,5 @@ export const removeSessionFromStorage = async (id: string) => {
     } catch {
       return undefined;
     }
+  }
 };

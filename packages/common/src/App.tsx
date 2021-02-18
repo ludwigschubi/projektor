@@ -64,6 +64,8 @@ export const ReactNativeApp: React.FC = () => {
     getActiveSessionsFromStorage().then((sessions) => {
       if (sessions && sessions.length > 0) {
         dispatch({ type: USER_SET_SESSIONS, payload: sessions });
+      } else {
+        dispatch({ type: USER_SET_SESSIONS, payload: [] });
       }
     });
   }, []);
