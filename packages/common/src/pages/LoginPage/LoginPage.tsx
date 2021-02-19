@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, View, Linking } from 'react-native';
 
-import { Button } from '../../components';
+import { Button, Text } from '../../components';
 import { LoadingAnimation } from '../../components/LoadingAnimation';
+import { TextSize } from '../../components/Text/Text.styles';
 import { useCurrentUser } from '../../context';
 import { Page } from '../Page';
 
@@ -49,10 +50,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
           onPress={() => {
             Linking.openURL('http://localhost:3000/login');
           }}>
-          Login
+          Login or Register
         </Button>
-        <Button
+        {/* <Button
           style={styles.communityButton}
+          textStyle={styles.communityButtonText}
           onPress={() => {
             Linking.openURL(
               `http://localhost:3000/login?idp=${encodeURIComponent(
@@ -62,6 +64,20 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
           }}>
           Login with community account
         </Button>
+        <Text size={TextSize.Medium} style={styles.or}>
+          or
+        </Text>
+        <Button
+          style={styles.registerButton}
+          onPress={() => {
+            Linking.openURL(
+              `https://auth.inrupt.com/signup?redirect_uri=${encodeURIComponent(
+                'projektor://login',
+              )}`,
+            );
+          }}>
+          Register account
+        </Button> */}
       </View>
     </Page>
   );

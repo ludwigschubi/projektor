@@ -30,10 +30,22 @@ export const LoginPageStyleSheet = StyleSheet.create({
   },
   communityButton: {
     marginTop: 16,
-    backgroundColor: colors.darkBlue,
+    backgroundColor: colors.white,
+    borderColor: colors.anthracite,
+    borderWidth: 1,
+  },
+  communityButtonText: {
+    color: colors.black,
   },
   sovereignButton: {
     marginTop: 16,
     backgroundColor: colors.orange,
+  },
+  or: {
+    padding: 16,
+    textAlign: 'center',
+  },
+  registerButton: {
+    backgroundColor: colors.green,
   },
 });

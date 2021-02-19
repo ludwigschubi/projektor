@@ -1,8 +1,6 @@
-import {
-  getSessionFromStorage,
-  Session,
-} from '@inrupt/solid-client-authn-node';
+import { getSessionFromStorage } from '@inrupt/solid-client-authn-node';
 import express from 'express';
+import asyncHandler from 'express-async-handler';
 import { graph, Fetcher } from 'rdflib';
 
 import {
@@ -40,11 +38,7 @@ app.use(
 app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
   const existingSession = await getSessionFromStorage(
     getSessionIdFromRequest(req),
-  ).catch(() => {
-    res.send(403);
-    next();
-    return {} as Session;
-  });
+  );
   if (existingSession?.info.isLoggedIn && existingSession.info.webId) {
     const sessionStore = graph();
     const sessionFetcher = new Fetcher(sessionStore);
@@ -63,13 +57,14 @@ app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
 });
 
 // Auth routes
-app.get('/login', loginHandler);
-app.get('/handle-redirect', redirectHandler);
-app.post('/logout', logoutHandler);
-app.post('/session', sessionAliveHandler);
+app.get('/login', asyncHandler(loginHandler));
+app.get('/register', asyncHandler(loginHandler));
+app.get('/handle-redirect', asyncHandler(redirectHandler));
+app.post('/logout', asyncHandler(logoutHandler));
+app.post('/session', asyncHandler(sessionAliveHandler));
 
 // User routes
-app.post('/user', profileHandler);
+app.post('/user', asyncHandler(profileHandler));
 
 app.listen(port, () => {
   console.log(

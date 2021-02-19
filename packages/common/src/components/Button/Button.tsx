@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   StyleProp,
   ViewStyle,
+  TextStyle,
   StyleSheetProperties,
 } from 'react-native';
 
@@ -15,16 +16,22 @@ import { ButtonStyleSheet as styles } from './Button.styles';
 interface ButtonProps {
   children: React.ReactNode;
   style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
   onPress?: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ onPress, style, children }) => {
+export const Button: React.FC<ButtonProps> = ({
+  onPress,
+  style,
+  children,
+  textStyle,
+}) => {
   if (typeof children === 'string') {
     children = (
       <Text
         size={TextSize.Medium}
         variant={TextVariant.Bold}
-        style={styles.text}>
+        style={{ ...styles.text, ...(textStyle as StyleSheetProperties) }}>
         {children}
       </Text>
     );
