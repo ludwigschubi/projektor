@@ -6,9 +6,11 @@ import { AuthenticatedHookContext, useHookAsUser } from '../auth';
 export interface Profile {
   name: string;
   bio: string;
+  link: string;
   picture: ImageSourcePropType;
   followers: [];
   follows: [];
+  posts: [];
 }
 
 export const useGetCurrentProfileQuery = (

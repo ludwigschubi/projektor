@@ -10,9 +10,12 @@ export const ProfilePictureStyleSheet = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  logo: {
+  picture: {
     width: 32,
     height: 32,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: colors.grey,
+    borderRadius: 50,
   },
   active: {
     borderWidth: 2,

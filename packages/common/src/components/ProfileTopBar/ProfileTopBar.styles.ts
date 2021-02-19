@@ -8,7 +8,7 @@ export const ProfileTopBarStyleSheet = StyleSheet.create({
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'flex-start',
-    borderBottomWidth: 1,
+    borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#dddddd',
   },
   username: {

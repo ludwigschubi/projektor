@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import {
+  View,
+  ViewStyle,
+  Image,
+  ImageStyle,
+  TouchableOpacity,
+  StyleSheetProperties,
+  StyleProp,
+} from 'react-native';
 
 import { useGetCurrentProfileQuery } from '../../resolvers';
 
@@ -10,20 +18,41 @@ const defaultProfilePicture = require('../../../src/assets/icons/defaultProfileI
 interface ProfilePictureProps {
   active?: boolean;
   onPress?: () => void;
+  style?: StyleProp<ViewStyle>;
+  pictureStyle?: StyleProp<ImageStyle>;
 }
 
 export const ProfilePicture: React.FC<ProfilePictureProps> = ({
   active,
   onPress,
+  style,
+  pictureStyle,
 }) => {
   const { data: user } = useGetCurrentProfileQuery();
   return (
     <TouchableOpacity onPress={onPress}>
-      <View style={{ ...styles.container, ...(active ? styles.active : {}) }}>
+      <View
+        style={{
+          ...styles.container,
+          ...(active ? styles.active : {}),
+          ...(style as StyleSheetProperties),
+        }}>
         {user?.picture ? (
-          <Image source={user?.picture} style={styles.logo} />
+          <Image
+            source={user?.picture}
+            style={{
+              ...styles.picture,
+              ...(pictureStyle as StyleSheetProperties),
+            }}
+          />
         ) : (
-          <Image source={defaultProfilePicture} style={styles.logo} />
+          <Image
+            source={defaultProfilePicture}
+            style={{
+              ...styles.picture,
+              ...(pictureStyle as StyleSheetProperties),
+            }}
+          />
         )}
       </View>
     </TouchableOpacity>

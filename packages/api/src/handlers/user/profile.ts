@@ -13,9 +13,11 @@ export const profileHandler = async (req: ResourceRequest, res: Response) => {
     res.json({
       name: profile['foaf#name'],
       picture: profile['vcard#hasPhoto'],
-      bio: profile['vcard#note'],
+      bio: profile['vcard#note'] ?? 'Default Bio',
+      link: 'https://instagram.com/opensource_plug',
       followers: [],
       follows: [],
+      posts: [],
     });
   } catch (error) {
     res.status(500).json({ error });
