@@ -1,9 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { Animated, View, Linking } from 'react-native';
 
-import { Button, Text } from '../../components';
+import { Button } from '../../components';
 import { LoadingAnimation } from '../../components/LoadingAnimation';
-import { TextSize } from '../../components/Text/Text.styles';
 import { useCurrentUser } from '../../context';
 import { Page } from '../Page';
 

@@ -9,11 +9,11 @@ export const profileHandler = async (req: ResourceRequest, res: Response) => {
   graph.store = req.store as IndexedFormula;
   graph.fetcher = req.fetcher as Fetcher;
   try {
-    const profileGraph = await graph.load();
+    const { ['#me']: profile } = await graph.load();
     res.json({
-      name: profileGraph['foaf#name'],
-      photo: profileGraph['vcard#hasPhoto'],
-      bio: profileGraph['vcard#note'],
+      name: profile['foaf#name'],
+      picture: profile['vcard#hasPhoto'],
+      bio: profile['vcard#note'],
       followers: [],
       follows: [],
     });

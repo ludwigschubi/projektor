@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text } from 'react-native';
 
+import { useGetCurrentProfileQuery } from '../../resolvers';
 import { Page } from '../Page';
 
 // import { ProfilePageStyleSheet as styles } from './ProfilePage.styles';
@@ -13,10 +14,11 @@ export interface ProfilePageProps {
 }
 
 export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
+  const { data: user, isLoading } = useGetCurrentProfileQuery();
   return (
-    <Page {...props}>
+    <Page {...props} loading={isLoading}>
       <>
-        <Text>Profile</Text>
+        <Text>{user?.name}</Text>
       </>
     </Page>
   );

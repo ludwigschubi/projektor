@@ -1,24 +1,36 @@
 import axios from 'axios';
-import { useQuery } from 'react-query';
+import { ImageSourcePropType } from 'react-native';
 
-import { useCurrentUser } from '../../context';
+import { AuthenticatedHookContext, useHookAsUser } from '../auth';
 
-export interface AuthenticatedRequestArguments {
-  sessionId?: string;
+export interface Profile {
+  name: string;
+  bio: string;
+  picture: ImageSourcePropType;
+  followers: [];
+  follows: [];
 }
 
-export const useGetCurrentProfileQuery = () => {
-  const { sessionId } = useCurrentUser() ?? {};
-  return useQuery('profile', () => getCurrentProfile({ sessionId }), {
-    staleTime: Infinity,
+export const useGetCurrentProfileQuery = (
+  getCurrentProfileHookOptions?:
+    | {
+        staleTime?: number;
+      }
+    | undefined,
+) => {
+  return useHookAsUser<Profile>(getCurrentProfile, {
+    key: 'profile',
+    staleTime: getCurrentProfileHookOptions?.staleTime,
   });
 };
 
-async function getCurrentProfile({ sessionId }: AuthenticatedRequestArguments) {
-  const profile = (
-    await axios.post('http://localhost:3000/user', {
+async function getCurrentProfile({ queryKey }: AuthenticatedHookContext) {
+  const [_, { sessionId }] = queryKey;
+  return axios
+    .post('http://localhost:3000/user', {
       sessionId,
     })
-  ).data;
-  return profile;
+    .then(({ data }) => {
+      return data;
+    });
 }

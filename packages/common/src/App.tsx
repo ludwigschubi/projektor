@@ -23,6 +23,7 @@ import {
 import { AppReducerContext, useAppReducer } from './reducers';
 import { USER_LOGIN, USER_SET_SESSIONS } from './reducers/app/appActions';
 import { LoadingAnimation } from './components/LoadingAnimation';
+import { ProfileTopBar } from './components/ProfileTopBar/ProfileTopBar';
 
 const Stack = createStackNavigator();
 
@@ -45,7 +46,9 @@ export const ReactNativeApp: React.FC = () => {
     subscribe(listener: any) {
       // First, you may want to do the default deep link handling
       const onReceiveURL = async (e: { url: string }) => {
-        const newUser = (qs.parse(e.url.split('?')[1]) ?? {}) as LoggedInUser;
+        const newUser = (qs.parse(
+          e.url.split('?')[1],
+        ) as unknown) as LoggedInUser;
         if (e.url.split('?')[0].endsWith('home') && newUser) {
           dispatch({ type: USER_LOGIN, payload: newUser });
           await saveActiveSessionsToStorage([...state.currentUser, newUser]);
@@ -146,7 +149,7 @@ export const ReactNativeApp: React.FC = () => {
                 animationEnabled: false,
                 header: () => (
                   <SafeAreaView>
-                    <TopBar />
+                    <ProfileTopBar />
                   </SafeAreaView>
                 ),
               }}

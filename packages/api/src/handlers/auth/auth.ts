@@ -22,6 +22,21 @@ export const loginHandler = async (req: SessionRequest, res: Response) => {
   });
 };
 
+export const registerHandler = async (req: SessionRequest, res: Response) => {
+  const session = new Session();
+  req.session = { sessionId: session.info.sessionId };
+  const redirectHandler = (url: string) => {
+    res.redirect(url);
+  };
+
+  await session.login({
+    redirectUrl: `http://localhost:${port}/handle-redirect`,
+    oidcIssuer: (req.query?.idp as string) ?? 'https://broker.pod.inrupt.com',
+    clientName: 'Projektor App',
+    handleRedirect: redirectHandler,
+  });
+};
+
 export const sessionAliveHandler = async (
   req: SessionRequest,
   res: Response,

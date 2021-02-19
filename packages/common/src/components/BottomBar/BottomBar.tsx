@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { Icon } from '../Icon';
+import { ProfilePicture } from '../ProfilePicture';
 
 import { BottomBarStyleSheet as styles } from './BottomBar.styles';
 
@@ -65,15 +66,13 @@ export const BottomBar: React.FC<BottomBarProps> = ({
         icon={bellIcon}
         activeIcon={bellIconActive}
       />
-      <Icon
+      <ProfilePicture
         onPress={() => {
           if (activeIcon !== 'Profile') {
             navigate('Profile');
           }
         }}
         active={activeIcon === 'Profile'}
-        icon={bellIcon}
-        activeIcon={bellIconActive}
       />
     </View>
   );

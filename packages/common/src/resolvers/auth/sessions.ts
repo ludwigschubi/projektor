@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { useQuery, QueryFunction, QueryFunctionContext } from 'react-query';
 import EncryptedStorage from 'react-native-encrypted-storage';
 
-import { LoggedInUser } from '../../context';
+import { LoggedInUser, useCurrentUser } from '../../context';
 
 export const testSession = async (sessionId: string) => {
   return (await axios.post('http://localhost:3000/session', { sessionId })).data
@@ -83,3 +84,29 @@ export const removeSessionFromStorage = async (id: string) => {
     }
   }
 };
+
+export type HookDefaultOptions =
+  | {
+      key?: string;
+      staleTime?: number;
+      variables?: Record<string, any>;
+    }
+  | undefined;
+
+export interface AuthenticatedHookContext extends QueryFunctionContext {
+  queryKey: [string, { sessionId: string }];
+}
+
+export function useHookAsUser<HookResult, HookOptions = HookDefaultOptions>(
+  queryFunction: QueryFunction<AuthenticatedHookContext>,
+  hookOptions?: HookDefaultOptions & HookOptions,
+) {
+  const { sessionId } = useCurrentUser() ?? {};
+  return useQuery<AuthenticatedHookContext, unknown, HookResult>(
+    [hookOptions?.key, { sessionId, ...hookOptions?.variables }],
+    queryFunction,
+    {
+      staleTime: hookOptions?.staleTime ?? Number(1000 * 60 * 5), // Refetch after 5 minutes by default
+    },
+  );
+}

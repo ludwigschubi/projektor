@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from 'react-native';
+
 import { useAppContext } from '../reducers';
 
 export type LoggedInUser =
@@ -5,6 +7,7 @@ export type LoggedInUser =
       sessionId: string;
       isLoggedIn: string;
       webId: string;
+      picture?: ImageSourcePropType;
     }
   | undefined;
 
