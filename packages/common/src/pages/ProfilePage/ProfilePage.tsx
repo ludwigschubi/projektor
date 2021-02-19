@@ -58,6 +58,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
           </View>
           <View style={styles.profileButtonContainer}>
             <Button
+              onPress={() => props.navigation.navigate('Profile')}
               variant={ButtonVariant.Secondary}
               style={styles.editProfileButton}>
               Edit Profile

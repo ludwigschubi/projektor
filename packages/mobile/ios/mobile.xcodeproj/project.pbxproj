@@ -15,11 +15,18 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* mobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* mobileTests.m */; };
+		3226DF247BFE4D25B4E056DB /* HelveticaNeue-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 95BC6E3E4A1E41C38222E1F1 /* HelveticaNeue-Light.otf */; };
+		33734A4033834437BF76F90C /* HelveticaNeue-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 689873012A0446EC8E49ACFB /* HelveticaNeue-RegularItalic.otf */; };
+		37CB6BFD19074F0687B99889 /* HelveticaNeue-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = A021C166EB4E47D290DD152C /* HelveticaNeue-Ultralight.otf */; };
 		76DEF8A5824D0DAB5DDF9D9E /* libPods-mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B06909B1C39EEB815AC2C1D /* libPods-mobile.a */; };
+		7CAA62EEF4674FF0B903643A /* HelveticaNeue-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC73B7FA84AA4F49A556942A /* HelveticaNeue-Bold.otf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		97D64C6F6BD847E3B1A8C6CF /* HelveticaNeue-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0D89777B764D4042B0D624CE /* HelveticaNeue-Regular.otf */; };
 		B39CE1224E122AE4D4EE1341 /* libPods-mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CBFD77A4DE7E2355A72E94B /* libPods-mobile-tvOS.a */; };
+		B83B2E71A22842D19603EA1B /* HelveticaNeue-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4952D12C7E164FEFA1A62651 /* HelveticaNeue-Thin.otf */; };
 		BBD999B5C8E184B3A5B4E196 /* libPods-mobile-mobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2749A53C29B9A3221B1167ED /* libPods-mobile-mobileTests.a */; };
 		C8F09BEEAC38FA48B05066C4 /* libPods-mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88A0FB00456EF84B377E1212 /* libPods-mobile-tvOSTests.a */; };
+		FDDB4523D6AB42AEB0B805CD /* HelveticaNeue-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB98D90D42141478037B109 /* HelveticaNeue-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,8 @@
 		00E356EE1AD99517003FC87E /* mobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* mobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mobileTests.m; sourceTree = "<group>"; };
+		0AB98D90D42141478037B109 /* HelveticaNeue-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Medium.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Medium.otf"; sourceTree = "<group>"; };
+		0D89777B764D4042B0D624CE /* HelveticaNeue-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Regular.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Regular.otf"; sourceTree = "<group>"; };
 		0E1A5502A415C837C74E692E /* Pods-mobile-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOS.release.xcconfig"; path = "Target Support Files/Pods-mobile-tvOS/Pods-mobile-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		0EE346617134DDB91220A032 /* Pods-mobile-mobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-mobileTests.release.xcconfig"; path = "Target Support Files/Pods-mobile-mobileTests/Pods-mobile-mobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,11 +67,16 @@
 		2D02E47B1E0B4A5D006451C7 /* mobile-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mobile-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* mobile-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mobile-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		35458715B3B1343FF284917A /* Pods-mobile.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.release.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.release.xcconfig"; sourceTree = "<group>"; };
+		4952D12C7E164FEFA1A62651 /* HelveticaNeue-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Thin.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Thin.otf"; sourceTree = "<group>"; };
 		4E9B47B02A2EE3663EE5238F /* Pods-mobile.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile.debug.xcconfig"; path = "Target Support Files/Pods-mobile/Pods-mobile.debug.xcconfig"; sourceTree = "<group>"; };
+		689873012A0446EC8E49ACFB /* HelveticaNeue-RegularItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-RegularItalic.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-RegularItalic.otf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = mobile/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88A0FB00456EF84B377E1212 /* libPods-mobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-mobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E76085C1680BC06ED20EEB7 /* Pods-mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-mobile-tvOS/Pods-mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		95BC6E3E4A1E41C38222E1F1 /* HelveticaNeue-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Light.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Light.otf"; sourceTree = "<group>"; };
 		98D69B2CAF813E4D7F980E69 /* Pods-mobile-mobileTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-mobileTests.debug.xcconfig"; path = "Target Support Files/Pods-mobile-mobileTests/Pods-mobile-mobileTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A021C166EB4E47D290DD152C /* HelveticaNeue-Ultralight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Ultralight.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Ultralight.otf"; sourceTree = "<group>"; };
+		AC73B7FA84AA4F49A556942A /* HelveticaNeue-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "HelveticaNeue-Bold.otf"; path = "../node_modules/@projektor/common/src/assets/fonts/HelveticaNeue-Bold.otf"; sourceTree = "<group>"; };
 		E1124C13BE13C62F5E3D3FEF /* Pods-mobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-mobile-tvOSTests/Pods-mobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -165,6 +179,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				C0BEB5A62D117FE25FA8CB05 /* Pods */,
+				968EFAFDA50B44B9A065428B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -180,6 +195,20 @@
 				2D02E4901E0B4A5D006451C7 /* mobile-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		968EFAFDA50B44B9A065428B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AC73B7FA84AA4F49A556942A /* HelveticaNeue-Bold.otf */,
+				95BC6E3E4A1E41C38222E1F1 /* HelveticaNeue-Light.otf */,
+				0AB98D90D42141478037B109 /* HelveticaNeue-Medium.otf */,
+				0D89777B764D4042B0D624CE /* HelveticaNeue-Regular.otf */,
+				689873012A0446EC8E49ACFB /* HelveticaNeue-RegularItalic.otf */,
+				4952D12C7E164FEFA1A62651 /* HelveticaNeue-Thin.otf */,
+				A021C166EB4E47D290DD152C /* HelveticaNeue-Ultralight.otf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		C0BEB5A62D117FE25FA8CB05 /* Pods */ = {
@@ -295,6 +324,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = Z2R5LMT4Z2;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -343,6 +373,13 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7CAA62EEF4674FF0B903643A /* HelveticaNeue-Bold.otf in Resources */,
+				3226DF247BFE4D25B4E056DB /* HelveticaNeue-Light.otf in Resources */,
+				FDDB4523D6AB42AEB0B805CD /* HelveticaNeue-Medium.otf in Resources */,
+				97D64C6F6BD847E3B1A8C6CF /* HelveticaNeue-Regular.otf in Resources */,
+				33734A4033834437BF76F90C /* HelveticaNeue-RegularItalic.otf in Resources */,
+				B83B2E71A22842D19603EA1B /* HelveticaNeue-Thin.otf in Resources */,
+				37CB6BFD19074F0687B99889 /* HelveticaNeue-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,9 +728,11 @@
 			baseConfigurationReference = 4E9B47B02A2EE3663EE5238F /* Pods-mobile.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = x86_64;
+				"ARCHS[sdk=*]" = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2R5LMT4Z2;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = mobile/Info.plist;
@@ -703,7 +742,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.projektor.mobile;
 				PRODUCT_NAME = mobile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -718,6 +757,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Z2R5LMT4Z2;
 				EXCLUDED_ARCHS = arm64;
 				INFOPLIST_FILE = mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -726,7 +766,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.projektor.mobile;
 				PRODUCT_NAME = mobile;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

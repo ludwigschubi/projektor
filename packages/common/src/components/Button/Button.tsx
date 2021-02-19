@@ -40,7 +40,9 @@ export const Button: React.FC<ButtonProps> = ({
         style={{
           ...textStyles.text,
           ...(textStyle as StyleSheetProperties),
-          ...textStyles[variant],
+          ...((textStyles as { [key: string]: StyleProp<TextStyle> })[
+            variant
+          ] as StyleSheetProperties),
         }}>
         {children}
       </Text>

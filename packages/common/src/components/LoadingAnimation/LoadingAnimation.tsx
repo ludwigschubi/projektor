@@ -23,8 +23,8 @@ const generateRandomNumber = (number: number) => Math.random() * number;
 const generateRandomStyles = (currentHeight: number, currentWidth: number) => ({
   top: generateRandomNumber(currentHeight),
   left: generateRandomNumber(currentWidth),
-  width: generateRandomNumber(2000),
-  height: generateRandomNumber(2000),
+  width: generateRandomNumber(1600),
+  height: generateRandomNumber(1600),
   transform: [{ rotate: generateRandomNumber(360) + 'deg' }],
 });
 

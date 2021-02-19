@@ -35,6 +35,7 @@ export const ReactNativeApp: React.FC = () => {
     screens: {
       initialRouteName: 'Home',
       Login: 'login',
+      Search: 'search',
       Home: 'home',
       Profile: 'user',
     },

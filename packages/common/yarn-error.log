@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add @types/react-native-encrypted-storage
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.22.10/libexec/bin/yarn.js add global ios-deploy
 
 PATH: 
   /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/ludwigschubert/Library/Android/sdk/emulator:/Users/ludwigschubert/Library/Android/sdk/tools:/Users/ludwigschubert/Library/Android/sdk/tools/bin:/Users/ludwigschubert/Library/Android/sdk/platform-tools:/Users/ludwigschubert/Library/Android/sdk/emulator:/Users/ludwigschubert/Library/Android/sdk/tools:/Users/ludwigschubert/Library/Android/sdk/tools/bin:/Users/ludwigschubert/Library/Android/sdk/platform-tools
@@ -14,17 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2freact-native-encrypted-storage: Not found
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:140749:22)
-      at Request.emit (events.js:315:20)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141721:10)
-      at Request.emit (events.js:315:20)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.22.10/libexec/lib/cli.js:141643:12)
-      at Object.onceWrapper (events.js:421:28)
-      at IncomingMessage.emit (events.js:327:22)
-      at endReadableNT (_stream_readable.js:1327:12)
-      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+  Error: ENOENT: no such file or directory, chmod '/Users/ludwigschubert/projektor/packages/mobile/node_modules/.bin/ios-deploy'
 
 npm manifest: 
   {
@@ -46,12 +36,15 @@ npm manifest:
       "babel": "^6.23.0",
       "react": "16.13.1",
       "react-native": "0.63.4",
-      "react-native-encrypted-storage": "^4.0.1",
       "react-query": "^3.9.6"
     },
     "devDependencies": {
       "rimraf": "^3.0.2",
       "typescript": "4.1.5"
+    },
+    "peerDependencies": {
+      "react-native-gesture-handler": "^1.10.1",
+      "react-native-encrypted-storage": "^4.0.1"
     }
   }
 
@@ -2493,13 +2486,13 @@ Lockfile:
       semver "^7.3.2"
       tsutils "^3.17.1"
   
-  "@typescript-eslint/eslint-plugin@^4.5.0":
-    version "4.15.0"
-    resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.15.0.tgz#13a5a07cf30d0d5781e43480aa2a8d38d308b084"
-    integrity sha512-DJgdGZW+8CFUTz5C/dnn4ONcUm2h2T0itWD85Ob5/V27Ndie8hUoX5HKyGssvR8sUMkAIlUc/AMK67Lqa3kBIQ==
+  "@typescript-eslint/eslint-plugin@^4.15.1", "@typescript-eslint/eslint-plugin@^4.5.0":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-4.15.1.tgz#835f64aa0a403e5e9e64c10ceaf8d05c3f015180"
+    integrity sha512-yW2epMYZSpNJXZy22Biu+fLdTG8Mn6b22kR3TqblVk50HGNV8Zya15WAXuQCr8tKw4Qf1BL4QtI6kv6PCkLoJw==
     dependencies:
-      "@typescript-eslint/experimental-utils" "4.15.0"
-      "@typescript-eslint/scope-manager" "4.15.0"
+      "@typescript-eslint/experimental-utils" "4.15.1"
+      "@typescript-eslint/scope-manager" "4.15.1"
       debug "^4.1.1"
       functional-red-black-tree "^1.0.1"
       lodash "^4.17.15"
@@ -2518,7 +2511,19 @@ Lockfile:
       eslint-scope "^5.0.0"
       eslint-utils "^2.0.0"
   
-  "@typescript-eslint/experimental-utils@4.15.0", "@typescript-eslint/experimental-utils@^4.0.1":
+  "@typescript-eslint/experimental-utils@4.15.1":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.15.1.tgz#d744d1ac40570a84b447f7aa1b526368afd17eec"
+    integrity sha512-9LQRmOzBRI1iOdJorr4jEnQhadxK4c9R2aEAsm7WE/7dq8wkKD1suaV0S/JucTL8QlYUPU1y2yjqg+aGC0IQBQ==
+    dependencies:
+      "@types/json-schema" "^7.0.3"
+      "@typescript-eslint/scope-manager" "4.15.1"
+      "@typescript-eslint/types" "4.15.1"
+      "@typescript-eslint/typescript-estree" "4.15.1"
+      eslint-scope "^5.0.0"
+      eslint-utils "^2.0.0"
+  
+  "@typescript-eslint/experimental-utils@^4.0.1":
     version "4.15.0"
     resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-4.15.0.tgz#b87c36410a9b23f637689427be85007a2ec1a9c6"
     integrity sha512-V4vaDWvxA2zgesg4KPgEGiomWEBpJXvY4ZX34Y3qxK8LUm5I87L+qGIOTd9tHZOARXNRt9pLbblSKiYBlGMawg==
@@ -2541,14 +2546,14 @@ Lockfile:
       "@typescript-eslint/typescript-estree" "3.10.1"
       eslint-visitor-keys "^1.1.0"
   
-  "@typescript-eslint/parser@^4.5.0":
-    version "4.15.0"
-    resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.15.0.tgz#8df94365b4b7161f9e8514fe28aef19954810b6b"
-    integrity sha512-L6Dtbq8Bc7g2aZwnIBETpmUa9XDKCMzKVwAArnGp5Mn7PRNFjf3mUzq8UeBjL3K8t311hvevnyqXAMSmxO8Gpg==
+  "@typescript-eslint/parser@^4.15.1", "@typescript-eslint/parser@^4.5.0":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-4.15.1.tgz#4c91a0602733db63507e1dbf13187d6c71a153c4"
+    integrity sha512-V8eXYxNJ9QmXi5ETDguB7O9diAXlIyS+e3xzLoP/oVE4WCAjssxLIa0mqCLsCGXulYJUfT+GV70Jv1vHsdKwtA==
     dependencies:
-      "@typescript-eslint/scope-manager" "4.15.0"
-      "@typescript-eslint/types" "4.15.0"
-      "@typescript-eslint/typescript-estree" "4.15.0"
+      "@typescript-eslint/scope-manager" "4.15.1"
+      "@typescript-eslint/types" "4.15.1"
+      "@typescript-eslint/typescript-estree" "4.15.1"
       debug "^4.1.1"
   
   "@typescript-eslint/scope-manager@4.15.0":
@@ -2559,6 +2564,14 @@ Lockfile:
       "@typescript-eslint/types" "4.15.0"
       "@typescript-eslint/visitor-keys" "4.15.0"
   
+  "@typescript-eslint/scope-manager@4.15.1":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/scope-manager/-/scope-manager-4.15.1.tgz#f6511eb38def2a8a6be600c530c243bbb56ac135"
+    integrity sha512-ibQrTFcAm7yG4C1iwpIYK7vDnFg+fKaZVfvyOm3sNsGAerKfwPVFtYft5EbjzByDJ4dj1WD8/34REJfw/9wdVA==
+    dependencies:
+      "@typescript-eslint/types" "4.15.1"
+      "@typescript-eslint/visitor-keys" "4.15.1"
+  
   "@typescript-eslint/types@3.10.1":
     version "3.10.1"
     resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-3.10.1.tgz#1d7463fa7c32d8a23ab508a803ca2fe26e758727"
@@ -2568,6 +2581,11 @@ Lockfile:
     version "4.15.0"
     resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.15.0.tgz#3011ae1ac3299bb9a5ac56bdd297cccf679d3662"
     integrity sha512-su4RHkJhS+iFwyqyXHcS8EGPlUVoC+XREfy5daivjLur9JP8GhvTmDipuRpcujtGC4M+GYhUOJCPDE3rC5NJrg==
+  
+  "@typescript-eslint/types@4.15.1":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/types/-/types-4.15.1.tgz#da702f544ef1afae4bc98da699eaecd49cf31c8c"
+    integrity sha512-iGsaUyWFyLz0mHfXhX4zO6P7O3sExQpBJ2dgXB0G5g/8PRVfBBsmQIc3r83ranEQTALLR3Vko/fnCIVqmH+mPw==
   
   "@typescript-eslint/typescript-estree@3.10.1":
     version "3.10.1"
@@ -2596,6 +2614,19 @@ Lockfile:
       semver "^7.3.2"
       tsutils "^3.17.1"
   
+  "@typescript-eslint/typescript-estree@4.15.1":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-4.15.1.tgz#fa9a9ff88b4a04d901ddbe5b248bc0a00cd610be"
+    integrity sha512-z8MN3CicTEumrWAEB2e2CcoZa3KP9+SMYLIA2aM49XW3cWIaiVSOAGq30ffR5XHxRirqE90fgLw3e6WmNx5uNw==
+    dependencies:
+      "@typescript-eslint/types" "4.15.1"
+      "@typescript-eslint/visitor-keys" "4.15.1"
+      debug "^4.1.1"
+      globby "^11.0.1"
+      is-glob "^4.0.1"
+      semver "^7.3.2"
+      tsutils "^3.17.1"
+  
   "@typescript-eslint/visitor-keys@3.10.1":
     version "3.10.1"
     resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-3.10.1.tgz#cd4274773e3eb63b2e870ac602274487ecd1e931"
@@ -2609,6 +2640,14 @@ Lockfile:
     integrity sha512-RnDtJwOwFucWFAMjG3ghCG/ikImFJFEg20DI7mn4pHEx3vC48lIAoyjhffvfHmErRDboUPC7p9Z2il4CLb7qxA==
     dependencies:
       "@typescript-eslint/types" "4.15.0"
+      eslint-visitor-keys "^2.0.0"
+  
+  "@typescript-eslint/visitor-keys@4.15.1":
+    version "4.15.1"
+    resolved "https://registry.yarnpkg.com/@typescript-eslint/visitor-keys/-/visitor-keys-4.15.1.tgz#c76abbf2a3be8a70ed760f0e5756bf62de5865dd"
+    integrity sha512-tYzaTP9plooRJY8eNlpAewTOqtWW/4ff/5wBjNVaJ0S0wC4Gpq/zDVRTJa5bq2v1pCNQ08xxMCndcvR+h7lMww==
+    dependencies:
+      "@typescript-eslint/types" "4.15.1"
       eslint-visitor-keys "^2.0.0"
   
   "@webassemblyjs/ast@1.9.0":
@@ -3226,7 +3265,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
     integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
   
-  async@^2.4.0, async@^2.6.2:
+  async@^2.1.4, async@^2.4.0, async@^2.6.2:
     version "2.6.3"
     resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
     integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
@@ -3693,6 +3732,14 @@ Lockfile:
     version "1.0.0"
     resolved "https://registry.yarnpkg.com/browser-process-hrtime/-/browser-process-hrtime-1.0.0.tgz#3c9b4b7d782c8121e56f10106d84c0d0ffc94626"
     integrity sha512-9o5UecI3GhkpM6DrXr69PblIuWxPKk9Y0jHBRhdocZ2y7YECBFCsHm79Pr3OyR2AvjhDkabFJaDJMYRazHgsow==
+  
+  browserfs@1.4.3:
+    version "1.4.3"
+    resolved "https://registry.yarnpkg.com/browserfs/-/browserfs-1.4.3.tgz#92ffc6063967612daccdb8566d3fc03f521205fb"
+    integrity sha512-tz8HClVrzTJshcyIu8frE15cjqjcBIu15Bezxsvl/i+6f59iNCN3kznlWjz0FEb3DlnDx3gW5szxeT6D1x0s0w==
+    dependencies:
+      async "^2.1.4"
+      pako "^1.0.4"
   
   browserify-aes@^1.0.0, browserify-aes@^1.0.4:
     version "1.2.0"
@@ -4933,6 +4980,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.6.tgz#865d0b5833d7d8d40f4e5b8a6d76aea3de4725ef"
     integrity sha512-+ZAmfyWMT7TiIlzdqJgjMb7S4f1beorDbWbsocyK4RaiqA5RTX3K14bnBWmmA9QEM0gRdsjyyrEmcyga8Zsxmw==
   
+  cuid@^2.1.8:
+    version "2.1.8"
+    resolved "https://registry.yarnpkg.com/cuid/-/cuid-2.1.8.tgz#cbb88f954171e0d5747606c0139fb65c5101eac0"
+    integrity sha512-xiEMER6E7TlTPnDxrM4eRiC6TRgjNX9xzEZ5U/Se2YJKr7Mq4pJn/2XEHjl3STcSh96GmkHPcBXLES8M29wyyg==
+  
   cyclist@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-1.0.1.tgz#596e9698fd0c80e12038c2b82d6eb1b35b6224d9"
@@ -5347,7 +5399,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dotenv-expand/-/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
     integrity sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==
   
-  dotenv@8.2.0:
+  dotenv@8.2.0, dotenv@^8.2.0:
     version "8.2.0"
     resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.2.0.tgz#97e619259ada750eea3e4ea3e26bceea5424b16a"
     integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
@@ -5758,6 +5810,13 @@ Lockfile:
     dependencies:
       prettier-linter-helpers "^1.0.0"
   
+  eslint-plugin-prettier@^3.3.1:
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.3.1.tgz#7079cfa2497078905011e6f82e8dd8453d1371b7"
+    integrity sha512-Rq3jkcFY8RYeQLgk2cCwuc0P7SEFwDravPhsJZOQ5N4YI4DSg50NyqJ/9gdZHzQlHf8MvafSesbNJCcP/FF6pQ==
+    dependencies:
+      prettier-linter-helpers "^1.0.0"
+  
   eslint-plugin-react-hooks@^4.0.4, eslint-plugin-react-hooks@^4.2.0:
     version "4.2.0"
     resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
@@ -5776,7 +5835,7 @@ Lockfile:
       "@babel/traverse" "^7.7.4"
       eslint-plugin-react-native-globals "^0.1.1"
   
-  eslint-plugin-react@^7.20.0, eslint-plugin-react@^7.21.5:
+  eslint-plugin-react@^7.20.0, eslint-plugin-react@^7.21.5, eslint-plugin-react@^7.22.0:
     version "7.22.0"
     resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.22.0.tgz#3d1c542d1d3169c45421c1215d9470e341707269"
     integrity sha512-p30tuX3VS+NWv9nQot9xIGAHBXR0+xJVaZriEsHoJrASGCJZDJ8JLNM0YqKqI0AKm6Uxaa1VUHoNEibxRCMQHA==
@@ -6085,6 +6144,11 @@ Lockfile:
       jest-matcher-utils "^26.6.2"
       jest-message-util "^26.6.2"
       jest-regex-util "^26.0.0"
+  
+  express-async-handler@^1.1.4:
+    version "1.1.4"
+    resolved "https://registry.yarnpkg.com/express-async-handler/-/express-async-handler-1.1.4.tgz#225a84908df63b35ae9df94b6f0f1af061266426"
+    integrity sha512-HdmbVF4V4w1q/iz++RV7bUxIeepTukWewiJGkoCKQMtvPF11MLTa7It9PRc/reysXXZSEyD4Pthchju+IUbMiQ==
   
   express-validator@^6.9.2:
     version "6.9.2"
@@ -7169,6 +7233,11 @@ Lockfile:
       please-upgrade-node "^3.2.0"
       slash "^3.0.0"
       which-pm-runs "^1.0.0"
+  
+  husky@^5.0.9:
+    version "5.0.9"
+    resolved "https://registry.yarnpkg.com/husky/-/husky-5.0.9.tgz#6d38706643d66ed395bcd4ee952d02e3f15eb3a3"
+    integrity sha512-0SjcaY21a+IRdx7p7r/X33Vc09UR2m8SbP8yfkhUX2/jAmwcz+GR7i9jXkp2pP3GfX23JhMkVP6SWwXB18uXtg==
   
   hyphenate-style-name@^1.0.2, hyphenate-style-name@^1.0.3:
     version "1.0.4"
@@ -8745,7 +8814,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
     integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
   
-  lint-staged@^10.2.11:
+  lint-staged@^10.2.11, lint-staged@^10.5.4:
     version "10.5.4"
     resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-10.5.4.tgz#cd153b5f0987d2371fc1d2847a409a2fe705b665"
     integrity sha512-EechC3DdFic/TdOPgj/RB3FicqE6932LTHCUm0Y2fsD9KGlLB+RwJl2q1IYBIvEsKzDOgn0D4gll+YxG5RsrKg==
@@ -10301,6 +10370,11 @@ Lockfile:
       os-homedir "^1.0.0"
       os-tmpdir "^1.0.0"
   
+  own-namespace@^0.4.5:
+    version "0.4.5"
+    resolved "https://registry.yarnpkg.com/own-namespace/-/own-namespace-0.4.5.tgz#a7273bb796fb853e15554f6dae87f942621f2b67"
+    integrity sha512-Z356j0LExwg9K4a6cYyfVysRa6/dNsSqoBIBvGYAStlINP1DePjOTiFICxj8x+X+I1K6lMObq1aTn8xNdZfewQ==
+  
   p-any@^3.0.0:
     version "3.0.0"
     resolved "https://registry.yarnpkg.com/p-any/-/p-any-3.0.0.tgz#79847aeed70b5d3a10ea625296c0c3d2e90a87b9"
@@ -10425,7 +10499,7 @@ Lockfile:
       registry-url "^5.0.0"
       semver "^6.2.0"
   
-  pako@~1.0.5:
+  pako@^1.0.4, pako@~1.0.5:
     version "1.0.11"
     resolved "https://registry.yarnpkg.com/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
     integrity sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==
@@ -11720,7 +11794,7 @@ Lockfile:
       semver "^6.3.0"
       setimmediate "^1.0.5"
   
-  rdflib@^2.1.7:
+  rdflib@^2.1.3, rdflib@^2.1.7:
     version "2.1.7"
     resolved "https://registry.yarnpkg.com/rdflib/-/rdflib-2.1.7.tgz#fb32b3ea4f542e8ff507da84e9c543fd49fa752b"
     integrity sha512-M3xF6lOLC9d58bl4fYCpwAG8Z6gZ0WRyFWeuZodd5qkroawt+gDUVZycVaeQnTZ/vKxgM18gABsvcK1/wf1lnw==
@@ -14525,6 +14599,18 @@ Lockfile:
       terser-webpack-plugin "^1.4.3"
       watchpack "^1.7.4"
       webpack-sources "^1.4.1"
+  
+  webql-client@^1.0.11:
+    version "1.0.11"
+    resolved "https://registry.yarnpkg.com/webql-client/-/webql-client-1.0.11.tgz#e66b9c5bd994de59dc1922a119e6e09f7edac126"
+    integrity sha512-SOuwI0SLlxWJxbE/JMbXDZUNXwFV+NJUl8cMtE8sCLhlIUCFyBKR2UWAUqqwXn1urz3WxlTakcH77vKjD9rC5Q==
+    dependencies:
+      browserfs "1.4.3"
+      cuid "^2.1.8"
+      dotenv "^8.2.0"
+      own-namespace "^0.4.5"
+      rdflib "^2.1.3"
+      url "^0.11.0"
   
   websocket-driver@0.6.5:
     version "0.6.5"
