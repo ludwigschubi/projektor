@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import { useCurrentUser } from '../../context';
 import { Icon } from '../Icon';
 import { ProfilePicture } from '../ProfilePicture';
 
@@ -24,6 +25,7 @@ export const BottomBar: React.FC<BottomBarProps> = ({
   navigate,
   activeIcon,
 }) => {
+  const currentUser = useCurrentUser();
   return (
     <View style={styles.container}>
       <Icon
@@ -69,7 +71,7 @@ export const BottomBar: React.FC<BottomBarProps> = ({
       <ProfilePicture
         onPress={() => {
           if (activeIcon !== 'Profile') {
-            navigate('Profile');
+            navigate('Profile', { webId: currentUser?.webId });
           }
         }}
         active={activeIcon === 'Profile'}

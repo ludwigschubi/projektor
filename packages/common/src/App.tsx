@@ -3,7 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { SafeAreaView, Linking } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from '@react-navigation/stack';
 import qs from 'query-string';
 
 import { TopBar } from './components';
@@ -14,6 +17,7 @@ import {
   NotificationsPage,
   ProfilePage,
   LoginPage,
+  EditProfilePage,
 } from './pages';
 import { LoggedInUser } from './context';
 import {
@@ -24,6 +28,7 @@ import { AppReducerContext, useAppReducer } from './reducers';
 import { USER_LOGIN, USER_SET_SESSIONS } from './reducers/app/appActions';
 import { LoadingAnimation } from './components/LoadingAnimation';
 import { ProfileTopBar } from './components/ProfileTopBar/ProfileTopBar';
+import { colors } from './constants';
 
 const Stack = createStackNavigator();
 
@@ -36,8 +41,9 @@ export const ReactNativeApp: React.FC = () => {
       initialRouteName: 'Home',
       Login: 'login',
       Search: 'search',
-      Home: 'home',
+      Home: '',
       Profile: 'user',
+      EditProfile: 'user/edit',
     },
   };
 
@@ -86,74 +92,69 @@ export const ReactNativeApp: React.FC = () => {
     <QueryClientProvider client={new QueryClient()}>
       <AppReducerContext.Provider value={{ state, dispatch }}>
         <NavigationContainer linking={linking}>
-          <Stack.Navigator>
+          <Stack.Navigator
+            headerMode="screen"
+            screenOptions={{
+              headerShown: true,
+              animationEnabled: false,
+              headerStyle: { height: 56 },
+              header: ({ scene }) => (
+                <>
+                  <SafeAreaView
+                    style={{ flex: 0, backgroundColor: colors.white }}
+                  />
+                  <SafeAreaView style={{ backgroundColor: colors.white }}>
+                    <TopBar shown={!!scene.descriptor.options.headerShown} />
+                  </SafeAreaView>
+                </>
+              ),
+            }}>
             <Stack.Screen
               name="Login"
               component={LoginPage}
               options={{
-                animationEnabled: false,
                 headerShown: false,
               }}
             />
-            <Stack.Screen
-              name="Home"
-              component={HomePage}
-              options={{
-                animationEnabled: false,
-                header: () => (
-                  <SafeAreaView>
-                    <TopBar />
-                  </SafeAreaView>
-                ),
-              }}
-            />
-            <Stack.Screen
-              name="Search"
-              component={SearchPage}
-              options={{
-                animationEnabled: false,
-                header: () => (
-                  <SafeAreaView>
-                    <TopBar />
-                  </SafeAreaView>
-                ),
-              }}
-            />
-            <Stack.Screen
-              name="Plus"
-              component={PlusPage}
-              options={{
-                animationEnabled: false,
-                header: () => (
-                  <SafeAreaView>
-                    <TopBar />
-                  </SafeAreaView>
-                ),
-              }}
-            />
-            <Stack.Screen
-              name="Notifications"
-              component={NotificationsPage}
-              options={{
-                animationEnabled: false,
-                header: () => (
-                  <SafeAreaView>
-                    <TopBar />
-                  </SafeAreaView>
-                ),
-              }}
-            />
+            <Stack.Screen name="Home" component={HomePage} />
+            <Stack.Screen name="Search" component={SearchPage} />
+            <Stack.Screen name="Plus" component={PlusPage} />
+            <Stack.Screen name="Notifications" component={NotificationsPage} />
             <Stack.Screen
               name="Profile"
               component={ProfilePage}
               options={{
-                animationEnabled: false,
-                header: () => (
-                  <SafeAreaView>
-                    <ProfileTopBar />
-                  </SafeAreaView>
+                header: ({ scene }) => (
+                  <>
+                    <SafeAreaView
+                      style={{ flex: 0, backgroundColor: colors.white }}
+                    />
+                    <SafeAreaView>
+                      <ProfileTopBar
+                        shown={!!scene.descriptor.options.headerShown}
+                      />
+                    </SafeAreaView>
+                  </>
                 ),
               }}
+            />
+            <Stack.Screen
+              name="EditProfile"
+              component={EditProfilePage}
+              options={{
+                animationEnabled: true,
+                headerShown: false,
+                gestureEnabled: true,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalTransition,
+              }}
+              // options={{
+              //   header: () => (
+              //     <SafeAreaView>
+              //       <TopBar />
+              //     </SafeAreaView>
+              //   ),
+              // }}
             />
           </Stack.Navigator>
         </NavigationContainer>

@@ -25,7 +25,7 @@ export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
   return (
     <Page {...props}>
       <>
-        {currentUser && (
+        {currentUser ? (
           <Button
             onPress={() => {
               logOutOfSession(currentUser.sessionId ?? '').then(() => {
@@ -41,11 +41,11 @@ export const HomePage: React.FC<HomePageProps> = ({ ...props }) => {
             }}>
             {`Log out of ${currentUser?.webId}`}
           </Button>
-        )}
+        ) : null}
         <Text>Home</Text>
         <Button
           onPress={() => {
-            Linking.openURL('http://localhost:3000/login');
+            Linking.openURL('http://localhost:4000/login');
           }}>
           Login to another account
         </Button>

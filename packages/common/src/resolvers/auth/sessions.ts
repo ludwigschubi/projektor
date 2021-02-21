@@ -5,12 +5,12 @@ import EncryptedStorage from 'react-native-encrypted-storage';
 import { LoggedInUser, useCurrentUser } from '../../context';
 
 export const testSession = async (sessionId: string) => {
-  return (await axios.post('http://localhost:3000/session', { sessionId })).data
+  return (await axios.post('http://localhost:4000/session', { sessionId })).data
     ?.isLoggedIn;
 };
 
 export const logOutOfSession = (sessionId: string) => {
-  return axios.post('http://localhost:3000/logout', { sessionId });
+  return axios.post('http://localhost:4000/logout', { sessionId });
 };
 
 export const getActiveSessionsFromStorage = async () => {
@@ -20,9 +20,9 @@ export const getActiveSessionsFromStorage = async () => {
     );
     console.debug(`RETRIEVING SESSION BY ${sessions[0]?.webId}`);
     const sessionActivity = await Promise.all(
-      sessions.map(async (session: LoggedInUser) => {
-        return await testSession(session?.sessionId as string);
-      }),
+      sessions.map((session: LoggedInUser) =>
+        testSession(session?.sessionId as string),
+      ),
     );
     const activeSessions = sessions.filter(
       (_: LoggedInUser, index: number) => sessionActivity[index],
@@ -30,6 +30,14 @@ export const getActiveSessionsFromStorage = async () => {
     const passiveSessions = sessions.filter(
       (_: LoggedInUser, index: number) => !sessionActivity[index],
     );
+    // console.debug(
+    //   'ACTIVE SESSIONS FOUND:',
+    //   activeSessions.map((session: LoggedInUser) => session?.webId),
+    // );
+    // console.debug(
+    //   'PASSIVE SESSIONS FOUND:',
+    //   passiveSessions.map((session: LoggedInUser) => session?.webId),
+    // );
     await Promise.all(
       passiveSessions.map(
         async (session: LoggedInUser) =>
@@ -94,7 +102,7 @@ export type HookDefaultOptions =
   | undefined;
 
 export interface AuthenticatedHookContext extends QueryFunctionContext {
-  queryKey: [string, { sessionId: string }];
+  queryKey: [string, { [key: string]: any }];
 }
 
 export function useHookAsUser<HookResult, HookOptions = HookDefaultOptions>(

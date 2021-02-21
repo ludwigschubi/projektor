@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Linking } from 'react-native';
 
-import { useGetCurrentProfileQuery } from '../../resolvers';
-import { Page } from '../Page';
+import { useGetCurrentProfileQuery } from '../../../resolvers';
+import { Page } from '../../Page';
 import {
   Button,
   ProfilePicture,
@@ -10,24 +10,25 @@ import {
   Text,
   TextSize,
   TextVariant,
-} from '../../components';
-import { ButtonVariant } from '../../components/Button/Button.styles';
+} from '../../../components';
+import { ButtonVariant } from '../../../components/Button/Button.styles';
 
-import { ProfilePageStyleSheet as styles } from './ProfilePage.styles';
+import { EditProfilePageStyleSheet as styles } from './EditProfilePage.styles';
 
-export interface ProfilePageProps {
+export interface EditProfilePageProps {
   route?:
     | { name: string; key: string; params: { sessionId: string } }
     | undefined;
   navigation?: any;
 }
 
-export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
+export const EditProfilePage: React.FC<EditProfilePageProps> = ({
+  ...props
+}) => {
   const { data: user, isLoading } = useGetCurrentProfileQuery();
   return (
-    <Page {...props} loading={isLoading}>
-      <View style={styles.container}>
-        <View style={styles.profileContainer}>
+    <View style={styles.container}>
+      {/*<View style={styles.profileContainer}>
           <View style={styles.headContainer}>
             <ProfilePicture
               style={styles.profilePictureContainer}
@@ -37,7 +38,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
           </View>
           <View style={styles.infoContainer}>
             <Text size={TextSize.Medium} style={styles.name}>
-              Ludwig {/* {user?.name} */}
+              {user?.name}
             </Text>
             {user?.bio && (
               <Text
@@ -64,8 +65,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
               Edit Profile
             </Button>
           </View>
-        </View>
-      </View>
-    </Page>
+        </View> */}
+    </View>
   );
 };

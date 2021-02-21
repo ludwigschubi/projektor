@@ -47,7 +47,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
       <View style={styles.loginOptions}>
         <Button
           onPress={() => {
-            Linking.openURL('http://localhost:3000/login');
+            Linking.openURL('http://localhost:4000/login');
           }}>
           Login or Register
         </Button>
@@ -56,7 +56,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ ...props }) => {
           textStyle={styles.communityButtonText}
           onPress={() => {
             Linking.openURL(
-              `http://localhost:3000/login?idp=${encodeURIComponent(
+              `http://localhost:4000/login?idp=${encodeURIComponent(
                 'https://solidcommunity.net',
               )}`,
             );
