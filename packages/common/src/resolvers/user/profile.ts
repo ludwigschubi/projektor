@@ -34,8 +34,9 @@ export const useGetCurrentProfileQuery = (
 async function getCurrentProfile({ queryKey }: AuthenticatedHookContext) {
   const [_, { sessionId, webId }] = queryKey;
   return axios
-    .post(`http://localhost:4000/${encodeURIComponent(webId)}`, {
+    .post(`http://localhost:4000/user`, {
       sessionId,
+      webId,
     })
     .then(({ data }) => {
       return data;

@@ -8,6 +8,7 @@ import {
   getSessionIdFromRequest,
   profileHandler,
   SessionRequest,
+  editProfileHandler,
 } from './src';
 import {
   loginHandler,
@@ -19,7 +20,7 @@ import {
 const cookieSession = require('cookie-session');
 
 const app = express();
-export const port = 3000;
+export const port = 4000;
 
 app.use(express.json());
 
@@ -65,6 +66,7 @@ app.post('/session', asyncHandler(sessionAliveHandler));
 
 // User routes
 app.post('/user', asyncHandler(profileHandler));
+app.post('/user/edit', asyncHandler(editProfileHandler));
 
 app.listen(port, () => {
   console.log(

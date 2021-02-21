@@ -8,8 +8,8 @@ export const LoginPageStyleSheet = StyleSheet.create({
     alignItems: 'center',
   },
   imageWrapper: {
-    position: 'absolute',
     height: '100%',
+    position: 'absolute',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -17,8 +17,10 @@ export const LoginPageStyleSheet = StyleSheet.create({
     paddingRight: 32,
   },
   image: {
-    maxWidth: '100%',
-    maxHeight: 68,
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1,
+    resizeMode: 'contain',
   },
   loginOptions: {
     width: '100%',

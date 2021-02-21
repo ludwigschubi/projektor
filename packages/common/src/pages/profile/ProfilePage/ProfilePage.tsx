@@ -54,6 +54,7 @@ export const ProfilePage: React.FC<ProfilePageProps> = ({ ...props }) => {
               <Text
                 size={TextSize.Medium}
                 style={styles.link}
+                textStyle={styles.link}
                 onPress={() => Linking.openURL(user?.link)}>
                 {user?.link}
               </Text>

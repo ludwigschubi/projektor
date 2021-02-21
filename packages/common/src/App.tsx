@@ -29,6 +29,7 @@ import { USER_LOGIN, USER_SET_SESSIONS } from './reducers/app/appActions';
 import { LoadingAnimation } from './components/LoadingAnimation';
 import { ProfileTopBar } from './components/ProfileTopBar/ProfileTopBar';
 import { colors } from './constants';
+import { OverlayTopBar } from './components/OverlayTopBar';
 
 const Stack = createStackNavigator();
 
@@ -143,7 +144,19 @@ export const ReactNativeApp: React.FC = () => {
               component={EditProfilePage}
               options={{
                 animationEnabled: true,
-                headerShown: false,
+                header: ({ scene, navigation }) => (
+                  <>
+                    <SafeAreaView
+                      style={{ flex: 0, backgroundColor: colors.white }}
+                    />
+                    <SafeAreaView style={{ backgroundColor: colors.white }}>
+                      <OverlayTopBar
+                        onCancel={() => navigation.goBack()}
+                        shown={!!scene.descriptor.options.headerShown}
+                      />
+                    </SafeAreaView>
+                  </>
+                ),
                 gestureEnabled: true,
                 cardOverlayEnabled: true,
                 ...TransitionPresets.ModalTransition,

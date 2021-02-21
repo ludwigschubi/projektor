@@ -1,19 +1,27 @@
 import React from 'react';
-import { View, Linking } from 'react-native';
-
-import { useGetCurrentProfileQuery } from '../../../resolvers';
-import { Page } from '../../Page';
+import { Formik } from 'formik';
 import {
-  Button,
+  StyleProp,
+  StyleSheetProperties,
+  View,
+  ViewStyle,
+  TextInput,
+} from 'react-native';
+
+import {
   ProfilePicture,
-  ProfileStatistics,
   Text,
   TextSize,
   TextVariant,
 } from '../../../components';
-import { ButtonVariant } from '../../../components/Button/Button.styles';
 
-import { EditProfilePageStyleSheet as styles } from './EditProfilePage.styles';
+import {
+  EditProfilePageStyleSheet as styles,
+  EditProfileFormStyleSheet as formStyles,
+} from './EditProfilePage.styles';
+import { useCurrentUser } from '../../../context';
+import { useGetCurrentProfileQuery } from '../../../resolvers';
+import { FormInput } from '../../../components/FormInput';
 
 export interface EditProfilePageProps {
   route?:
@@ -22,50 +30,75 @@ export interface EditProfilePageProps {
   navigation?: any;
 }
 
-export const EditProfilePage: React.FC<EditProfilePageProps> = ({
-  ...props
-}) => {
-  const { data: user, isLoading } = useGetCurrentProfileQuery();
+export interface EditProfileFormProps {
+  style?: StyleProp<ViewStyle>;
+}
+
+export const EditProfileForm: React.FC<EditProfileFormProps> = ({ style }) => {
+  const { data: user } = useGetCurrentProfileQuery();
+  return (
+    <View
+      style={
+        {
+          ...formStyles.container,
+          ...(style as StyleSheetProperties),
+        } as StyleProp<ViewStyle>
+      }>
+      <Formik
+        initialValues={{
+          name: user?.name,
+          bio: user?.bio,
+          link: user?.link,
+          picture: user?.picture,
+        }}
+        onSubmit={() => {
+          console.debug('Submitted');
+        }}>
+        {({ handleSubmit, handleChange, values }) => (
+          <>
+            <FormInput
+              label="Username"
+              value={values.name}
+              onChange={handleChange('name')}
+            />
+            <FormInput
+              label="Name"
+              value={values.name}
+              onChange={handleChange('name')}
+            />
+            <FormInput
+              label="Bio"
+              value={values.bio}
+              onChange={handleChange('bio')}
+            />
+            <FormInput
+              label="Link"
+              value={values.link}
+              inputStyle={formStyles.input}
+              onChange={handleChange('link')}
+            />
+          </>
+        )}
+      </Formik>
+    </View>
+  );
+};
+
+export const EditProfilePage: React.FC<EditProfilePageProps> = () => {
   return (
     <View style={styles.container}>
-      {/*<View style={styles.profileContainer}>
-          <View style={styles.headContainer}>
-            <ProfilePicture
-              style={styles.profilePictureContainer}
-              pictureStyle={styles.profilePicture}
-            />
-            <ProfileStatistics />
-          </View>
-          <View style={styles.infoContainer}>
-            <Text size={TextSize.Medium} style={styles.name}>
-              {user?.name}
-            </Text>
-            {user?.bio && (
-              <Text
-                size={TextSize.Medium}
-                variant={TextVariant.Regular}
-                style={styles.bio}>
-                {user?.bio}
-              </Text>
-            )}
-            {user?.link && (
-              <Text
-                size={TextSize.Medium}
-                style={styles.link}
-                onPress={() => Linking.openURL(user?.link)}>
-                {user?.link}
-              </Text>
-            )}
-          </View>
-          <View style={styles.profileButtonContainer}>
-            <Button
-              onPress={() => props.navigation.navigate('Profile')}
-              variant={ButtonVariant.Secondary}
-              style={styles.editProfileButton}>
-              Edit Profile
-            </Button>
-          </View>
-        </View> */}
+      <View style={styles.profileContainer}>
+        <View style={styles.headContainer}>
+          <ProfilePicture
+            style={styles.profilePictureContainer}
+            pictureStyle={styles.profilePicture}
+          />
+          <Text size={TextSize.Medium} textStyle={styles.changePicture}>
+            Change profile picture
+          </Text>
+        </View>
+        <EditProfileForm />
+      </View>
     </View>
   );
 };

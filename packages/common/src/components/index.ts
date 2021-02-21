@@ -1,5 +1,6 @@
 export * from './TopBar';
 export * from './ProfileTopBar';
+export * from './OverlayTopBar';
 export * from './BottomBar';
 export * from './Button';
 export * from './Icon';

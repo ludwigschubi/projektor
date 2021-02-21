@@ -35,7 +35,7 @@ export const Page: React.FC<PageProps> = ({
   const currentUser = useCurrentUser();
   useEffect(() => {
     if (!currentUser && route?.name !== 'Login') {
-      navigation.navigate('/login');
+      navigation.navigate('Login');
     }
   }, [currentUser]);
 
