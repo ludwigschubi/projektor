@@ -24,6 +24,8 @@ export const OverlayTopBarStyleSheet = StyleSheet.create({
   done: {
     textAlign: 'right',
     flexBasis: 50,
+  },
+  doneText: {
     color: colors.lightBlue,
   },
 });

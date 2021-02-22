@@ -17,6 +17,8 @@ export const EditProfilePageStyleSheet = StyleSheet.create({
     alignItems: 'center',
     borderTopWidth: StyleSheet.hairlineWidth,
     borderTopColor: colors.grey,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: colors.grey,
   },
   headContainer: {
     padding: 16,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Linking } from 'react-native';
 
 import { useGetCurrentProfileQuery } from '../../../resolvers';
@@ -15,6 +15,7 @@ import { ButtonVariant } from '../../../components/Button/Button.styles';
 import { useCurrentUser } from '../../../context';
 
 import { ProfilePageStyleSheet as styles } from './ProfilePage.styles';
+import { useAppReducer } from '../../../reducers';
 
 export interface ProfilePageProps {
   route?: { name: string; key: string; params: any } | undefined;

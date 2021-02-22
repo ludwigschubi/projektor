@@ -7,15 +7,18 @@ import {
   USER_LOGOUT,
   USER_SET_SESSIONS,
   USER_SET_PROFILE,
+  USER_SET_PROFILE_SUCCESS,
 } from './appActions';
 
 export const initialAppState = {
+  user: {},
+  submitModalForm: () => null,
   currentUser: [] as LoggedInUser[],
 };
 
 export type AppReducer = Reducer<
   typeof initialAppState,
-  { type: string; payload: any }
+  { type: string; payload?: any | (() => void) }
 >;
 
 export const appReducer = (
@@ -26,16 +29,15 @@ export const appReducer = (
   console.info('With the payload: ');
   console.info(action.payload);
   switch (action.type) {
+    case USER_SET_PROFILE_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+      };
     case USER_SET_PROFILE:
       return {
         ...state,
-        currentUser: state.currentUser.map((user) => {
-          if (user?.webId === (action.payload.user as LoggedInUser)?.webId) {
-            return action.payload.user;
-          } else {
-            return user;
-          }
-        }),
+        submitModalForm: action.payload,
       };
     case USER_SET_SESSIONS:
       return {
@@ -74,6 +76,6 @@ export const AppReducerContext = React.createContext<{
 });
 
 export const useAppReducer = () =>
-  React.useReducer(appReducer, initialAppState);
+  React.useReducer<AppReducer>(appReducer, initialAppState);
 
 export const useAppContext = () => React.useContext(AppReducerContext);

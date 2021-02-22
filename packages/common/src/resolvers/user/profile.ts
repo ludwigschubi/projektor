@@ -1,10 +1,15 @@
 import axios from 'axios';
 import { ImageSourcePropType } from 'react-native';
 
-import { AuthenticatedHookContext, useHookAsUser } from '../auth';
+import {
+  AuthenticatedHookContext,
+  HookDefaultOptions,
+  useMutationHookAsUser,
+  useQueryHookAsUser,
+} from '../auth';
 
 export interface Profile {
-  id: string;
+  webId: string;
   name: string;
   bio: string;
   link: string;
@@ -24,7 +29,7 @@ export type CurrentProfileHookOptions =
 export const useGetCurrentProfileQuery = (
   getCurrentProfileHookOptions?: CurrentProfileHookOptions,
 ) => {
-  return useHookAsUser<Profile>(getCurrentProfile, {
+  return useQueryHookAsUser<Profile>(getCurrentProfile, {
     key: 'profile',
     staleTime: getCurrentProfileHookOptions?.staleTime,
     variables: { webId: getCurrentProfileHookOptions?.webId },
@@ -41,4 +46,34 @@ async function getCurrentProfile({ queryKey }: AuthenticatedHookContext) {
     .then(({ data }) => {
       return data;
     });
+}
+
+export type EditProfileVariables =
+  | {
+      webId: string;
+      name?: string;
+      bio?: string;
+      link?: string;
+      picture?: ImageSourcePropType;
+    }
+  | undefined;
+
+export const useEditProfileMutation = (hookOptions?: HookDefaultOptions) => {
+  return useMutationHookAsUser<Profile, EditProfileVariables>(editProfile, {
+    key: 'profile',
+    onError: hookOptions?.onError,
+    onSuccess: hookOptions?.onSuccess,
+  });
+};
+
+async function editProfile(variablesAndSession: EditProfileVariables) {
+  const { sessionId: _sessionId, ...rest } = variablesAndSession as Record<
+    string,
+    any
+  >;
+  await axios.post('http://localhost:4000/user/edit', {
+    _sessionId,
+    variablesAndSession,
+  });
+  return rest as Profile;
 }

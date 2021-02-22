@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { useQuery, QueryFunction, QueryFunctionContext } from 'react-query';
+import {
+  useQuery,
+  QueryFunction,
+  QueryFunctionContext,
+  useMutation,
+  MutationFunction,
+} from 'react-query';
 import EncryptedStorage from 'react-native-encrypted-storage';
 
 import { LoggedInUser, useCurrentUser } from '../../context';
@@ -93,7 +99,7 @@ export const removeSessionFromStorage = async (id: string) => {
   }
 };
 
-export type HookDefaultOptions =
+export type QueryHookDefaultOptions =
   | {
       key?: string;
       staleTime?: number;
@@ -105,16 +111,59 @@ export interface AuthenticatedHookContext extends QueryFunctionContext {
   queryKey: [string, { [key: string]: any }];
 }
 
-export function useHookAsUser<HookResult, HookOptions = HookDefaultOptions>(
+export function useQueryHookAsUser<
+  QueryHookResult,
+  QueryHookOptions = QueryHookDefaultOptions
+>(
   queryFunction: QueryFunction<AuthenticatedHookContext>,
-  hookOptions?: HookDefaultOptions & HookOptions,
+  hookOptions?: QueryHookDefaultOptions & QueryHookOptions,
 ) {
   const { sessionId } = useCurrentUser() ?? {};
-  return useQuery<AuthenticatedHookContext, unknown, HookResult>(
+  return useQuery<AuthenticatedHookContext, unknown, QueryHookResult>(
     [hookOptions?.key, { sessionId, ...hookOptions?.variables }],
     queryFunction,
     {
       staleTime: hookOptions?.staleTime ?? Number(1000 * 60 * 5), // Refetch after 5 minutes by default
     },
   );
+}
+
+export type HookDefaultOptions =
+  | {
+      key?: string;
+      onSuccess?: (
+        data: any,
+        variables: any,
+        context: any | undefined,
+      ) => Promise<void> | void;
+      onError?: (
+        error: any,
+        variables: any,
+        context: any | undefined,
+      ) => Promise<void> | void;
+    }
+  | undefined;
+
+export interface AuthenticatedHookContext extends QueryFunctionContext {
+  queryKey: [string, { [key: string]: any }];
+}
+
+export function useMutationHookAsUser<
+  MutationHookResult,
+  MutationHookVariables,
+  MutationHookOptions = HookDefaultOptions
+>(
+  mutationFunction: MutationFunction<MutationHookResult, MutationHookVariables>,
+  hookOptions?: HookDefaultOptions & MutationHookOptions,
+) {
+  const { sessionId } = useCurrentUser() ?? {};
+  return useMutation<
+    MutationHookResult,
+    unknown,
+    MutationHookVariables,
+    AuthenticatedHookContext
+  >([hookOptions?.key, { sessionId }], mutationFunction, {
+    onError: hookOptions?.onError,
+    onSuccess: hookOptions?.onSuccess,
+  });
 }
