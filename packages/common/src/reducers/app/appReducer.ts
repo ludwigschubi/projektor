@@ -7,7 +7,7 @@ import {
   USER_LOGOUT,
   USER_SET_SESSIONS,
   USER_SET_PROFILE,
-  USER_SET_PROFILE_SUCCESS,
+  USER_SET_PROFILE_SUBMIT,
 } from './appActions';
 
 export const initialAppState = {
@@ -29,12 +29,12 @@ export const appReducer = (
   console.info('With the payload: ');
   console.info(action.payload);
   switch (action.type) {
-    case USER_SET_PROFILE_SUCCESS:
+    case USER_SET_PROFILE:
       return {
         ...state,
         user: action.payload,
       };
-    case USER_SET_PROFILE:
+    case USER_SET_PROFILE_SUBMIT:
       return {
         ...state,
         submitModalForm: action.payload,

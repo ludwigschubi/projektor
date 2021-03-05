@@ -148,7 +148,7 @@ export interface AuthenticatedHookContext extends QueryFunctionContext {
   queryKey: [string, { [key: string]: any }];
 }
 
-export function useMutationHookAsUser<
+export function useMutationHook<
   MutationHookResult,
   MutationHookVariables,
   MutationHookOptions = HookDefaultOptions
@@ -156,13 +156,12 @@ export function useMutationHookAsUser<
   mutationFunction: MutationFunction<MutationHookResult, MutationHookVariables>,
   hookOptions?: HookDefaultOptions & MutationHookOptions,
 ) {
-  const { sessionId } = useCurrentUser() ?? {};
   return useMutation<
     MutationHookResult,
     unknown,
     MutationHookVariables,
     AuthenticatedHookContext
-  >([hookOptions?.key, { sessionId }], mutationFunction, {
+  >(hookOptions?.key as string, mutationFunction, {
     onError: hookOptions?.onError,
     onSuccess: hookOptions?.onSuccess,
   });

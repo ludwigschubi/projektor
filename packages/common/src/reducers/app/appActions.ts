@@ -1,4 +1,4 @@
-export const USER_SET_PROFILE_SUCCESS = 'user.set.profile.success';
+export const USER_SET_PROFILE_SUBMIT = 'user.set.profile.submit';
 export const USER_SET_PROFILE_CANCEL = 'user.set.profile.cancel';
 export const USER_SET_PROFILE = 'user.set.profile';
 export const USER_SET_SESSIONS = 'user.set.sessions';

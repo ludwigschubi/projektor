@@ -4,7 +4,7 @@ import { ImageSourcePropType } from 'react-native';
 import {
   AuthenticatedHookContext,
   HookDefaultOptions,
-  useMutationHookAsUser,
+  useMutationHook,
   useQueryHookAsUser,
 } from '../auth';
 
@@ -59,7 +59,7 @@ export type EditProfileVariables =
   | undefined;
 
 export const useEditProfileMutation = (hookOptions?: HookDefaultOptions) => {
-  return useMutationHookAsUser<Profile, EditProfileVariables>(editProfile, {
+  return useMutationHook<Profile, EditProfileVariables>(editProfile, {
     key: 'profile',
     onError: hookOptions?.onError,
     onSuccess: hookOptions?.onSuccess,
@@ -67,13 +67,10 @@ export const useEditProfileMutation = (hookOptions?: HookDefaultOptions) => {
 };
 
 async function editProfile(variablesAndSession: EditProfileVariables) {
-  const { sessionId: _sessionId, ...rest } = variablesAndSession as Record<
+  const { sessionId: credentials, ...rest } = variablesAndSession as Record<
     string,
     any
   >;
-  await axios.post('http://localhost:4000/user/edit', {
-    _sessionId,
-    variablesAndSession,
-  });
+  await axios.post('http://localhost:4000/user/edit', variablesAndSession);
   return rest as Profile;
 }

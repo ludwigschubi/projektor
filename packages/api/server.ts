@@ -1,7 +1,7 @@
 import { getSessionFromStorage } from '@inrupt/solid-client-authn-node';
 import express from 'express';
 import asyncHandler from 'express-async-handler';
-import { graph, Fetcher } from 'rdflib';
+import { graph, Fetcher, UpdateManager } from 'rdflib';
 
 import {
   ResourceRequest,
@@ -9,6 +9,7 @@ import {
   profileHandler,
   SessionRequest,
   editProfileHandler,
+  checkProfile,
 } from './src';
 import {
   loginHandler,
@@ -43,16 +44,19 @@ app.use(async (req: ResourceRequest & SessionRequest, res, next) => {
   if (existingSession?.info.isLoggedIn && existingSession.info.webId) {
     const sessionStore = graph();
     const sessionFetcher = new Fetcher(sessionStore);
+    const sessionUpdater = new UpdateManager(sessionStore);
     sessionFetcher._fetch = existingSession.fetch;
     req.webId = existingSession.info.webId;
+    req.updater = sessionUpdater;
     req.fetcher = sessionFetcher;
     req.store = sessionStore;
   } else if (
     req.path !== '/login' &&
+    req.path !== '/logout' &&
     req.path !== '/session' &&
     req.path !== '/handle-redirect'
   ) {
-    res.send(403);
+    res.sendStatus(403);
   }
   next();
 });
@@ -66,7 +70,7 @@ app.post('/session', asyncHandler(sessionAliveHandler));
 
 // User routes
 app.post('/user', asyncHandler(profileHandler));
-app.post('/user/edit', asyncHandler(editProfileHandler));
+app.post('/user/edit', checkProfile, asyncHandler(editProfileHandler));
 
 app.listen(port, () => {
   console.log(
